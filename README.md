@@ -1,7 +1,8 @@
 eXastum
 =======
 
-The new repository for the eXastumV Project  
+The new repository for the eXastum V Project  
+
 Since this is a new repo all the stars have been lost, if you had this project starred it would be really cool and helpful if you could restar it :)
 
 *Help us celebrate 5 years of eXastum! April 14th - April 21th!*
