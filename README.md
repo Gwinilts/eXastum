@@ -1,9 +1,11 @@
 eXastum
 =======
 
-The new repository for the eXastumV Project
+The new repository for the eXastumV Project  
+Since this is a new repo all the stars have been lost, if you had this project starred it would be really cool and helpful if you could restar it :)
 
-*eXastum will return on its 5th anniversery, April 14th 2016*
+*Help us celebrate 5 years of eXastum! April 14th - April 21th!*
+*eXastum V is coming soon*
 
 **License Change:**
 eXastum has been relicensed under a more permissive BSD license.
