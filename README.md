@@ -2,7 +2,9 @@ eXastum
 =======
 
 ***THIS IS A DEVELOPMENT REPO***
+
 ***DO NOT REPORT MISSING FUNCTIONALITY / KNOWN BUGS***
+
 ***DON'T EXPECT THINGS TO WORK UNTIL A RELEASE IS MADE***
 
 The new repository for the eXastum V Project
