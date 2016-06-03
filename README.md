@@ -1,7 +1,11 @@
 eXastum
 =======
 
-The new repository for the eXastum V Project  
+***THIS IS A DEVELOPMENT REPO***
+***DO NOT REPORT MISSING FUNCTIONALITY / KNOWN BUGS***
+***DON'T EXPECT THINGS TO WORK UNTIL A RELEASE IS MADE***
+
+The new repository for the eXastum V Project
 
 Since this is a new repo all the stars have been lost, if you had this project starred it would be really cool and helpful if you could restar it :)
 

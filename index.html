@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>eXastum</title>
+    <script src="sys/libs/macgril.js"></script>
+    <script src="sys/libs/eXastum.js"></script>
+    <script src="sys/libs/third_party/three/three.min.js"></script>
+    <link rel="stylesheet" href="sys/ui/skins/default/skin.css"></link>
+    <link rel="stylesheet" href="sys/ui/layout.css"></link>
+</head>
+<body onload="eXastumInit()">
+    <header>
+        <img id="menuButton" src="sys/ui/skins/default/imgs/menuIcon.png" onclick="mainMenu()"/>
+        <div id="mainMenu">
+            <ul>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+            </ul>
+        </div>
+    </header>
+    <section id="desktop">
+        <div id="icons">
+        </div>
+        <div id="dock">
+        </div>
+    </section>
+    <aside>
+
+    </aside>
+    <footer onmouseover="showDock()">
+        <span>&copy; Brian Millar 2016</span>
+        <button onclick="systemReset()">Reset</button>
+    </footer>
+    <div id="setup">
+        <div id="setupBottom">
+            <div id="currentSetupStage">
+                <h1>Welcome to eXastum 5</h1>
+                <p>Thank you for downloading eXastum! The eXastum desktop has been rewritten from the ground up to provide a more stable, faster and more feature rich platform for running desktop class web applications.
+                <br/><br/>
+                Since it looks as if this is your first time running eXastum on this machine there are just a few steps to go through in order to set things up.
+                <br/><br/>
+                Please check the box below and click 'Next' to continue with setup.</p>
+                <input type="checkbox" onchange="if (this.checked) $('setupNextButton').disabled = false; else $('setupNextButton').disabled = true"/>
+            </div>
+            <progress disabled id="setupProgress" min="0" max="100" value="0"></progress>
+            <button disabled id="setupNextButton" onclick="setupNext()">Next</button>
+        </div>
+    </div>
+    <div id="overlay"></div>
+</body>
+</html>
