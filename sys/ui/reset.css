@@ -1,0 +1,11 @@
+button {
+    appearance:         none;
+    -moz-appearance:    none;
+    -webkit-appearance: none;
+    -ms-appearance:     none;
+    -o-appearance:      none;
+    outline: none;
+    border:  none;
+    padding: none;
+    margin:  none;
+}

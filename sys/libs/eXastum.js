@@ -1,6 +1,7 @@
 function eXastumInit() {
     if (lStore("firstUse") !== "false")
         runSetup();
+    clockLoop();
 }
 
 function mainMenu() {
@@ -44,4 +45,17 @@ function setupNext() {
 
 function systemReset() {
     lStore("firstUse", "del");
+}
+
+function eX_launchApp(appName) {
+    loadManifest("sys/apps/" + appName + "/manifest.json");
+    newWindow(640, 400, appName, "sys/apps/" + appName + "/index.html", "horizontal", true, true);
+}
+
+function loadManifest(appName) {
+}
+
+function clockLoop() {
+    $("clock").innerText = fDate() + " | " + fTime();
+    setTimeout(clockLoop, 500);
 }

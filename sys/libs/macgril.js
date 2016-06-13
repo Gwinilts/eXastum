@@ -24,8 +24,6 @@
     OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
-
 var mgID = 0;
 
 function print(x) {
@@ -79,8 +77,10 @@ function $(name) {
 function generate(x, y, z) {
     var el = document.createElement(x);
     var id;
-    if (z !== null) id = z;
-    else id = "macgrilID" + (mgID++);
+    if (z !== null && z!== undefined)
+        id = z;
+    else
+        id = "macgrilID" + (mgID++);
     el.setAttribute("id", id);
     $(y).appendChild(el);
     return id;
@@ -145,19 +145,18 @@ function lStore(x, y) {
         return window.localStorage.getItem(x);
 }
 
-//Needs cleanup
-function fOpen(accept) {
-        if (($("fOpen") !== 0) && ($("fOpen") !== undefined))
-            $("macgril").removeChild($("fOpen"));
-        generate("input", "macgril", "fOpen");
-        $("fOpen").setAttribute("type", "file");
-        if ((accept !== null) && (accept !== undefined))
-            $("fOpen").setAttribute("accept", accept);
-        $("fOpen").click();
-        var x = window.confirm("Are you sure you want to load this file from disk?");
-        if (x)
-            if ($('fOpen').files[0] != undefined)
-                return window.URL.createObjectURL($('fOpen').files[0]);
+function fOpen(func, accept) {
+    if (($("fOpen") !== 0) && ($("fOpen") !== undefined))
+        $("macgril").removeChild($("fOpen"));
+    generate("input", "macgril", "fOpen");
+    $("fOpen").setAttribute("type", "file");
+    if ((accept !== null) && (accept !== undefined))
+        $("fOpen").setAttribute("accept", accept);
+    $("fOpen").click();
+    $("fOpen").addEventListener("change", function() {
+        if ($('fOpen').files[0] != undefined)
+            func(window.URL.createObjectURL($('fOpen').files[0]));
+    });
 }
 
 //This file contains eXastum-specific code that should be generalised ASAP
@@ -520,18 +519,19 @@ function visualize() {
 function newWindow(x, y, title, content, resize, min, max) {
     if((max === null) || (max === undefined)) max = true;
     if((min === null) || (min === undefined)) min = true;
-    var newWindow = generate("div",  "windowSystem");
+    var newWindow = generate("div", "windowSystem");
     var titleBar  = generate("span", newWindow);
+    var actionButtons = generate("div", newWindow);
     var windowTab = newTab(title);
+    $(actionButtons).setAttribute("class", "actionButtons");
     $(newWindow).setAttribute("class", "window");
-    $(newWindow).setAttribute("onmouseover", "updateInfoBar('" + title + "');");
-    $(newWindow).style.width   = parseInt(x) + 2  + "px";
-    $(newWindow).style.height  = parseInt(y) + 32 + "px";
-    $(newWindow).style.resize  = resize;
-    $(newWindow).style.left    = randNum(600, 0) + "px";
-    $(newWindow).style.top     = (parseInt(randNum(200, 0)) + 25) + "px";
-    $(newWindow).style.display = "block";
-    $(titleBar).style.width    = x;
+    $(newWindow).style.minWidth  = parseInt(x) + 2  + "px";
+    $(newWindow).style.minHeight = parseInt(y) + 32 + "px";
+    $(newWindow).style.resize    = resize;
+    $(newWindow).style.left      = randNum(600, 0) + "px";
+    $(newWindow).style.top       = (parseInt(randNum(200, 0)) + 25) + "px";
+    $(newWindow).style.display   = "block";
+    $(titleBar).style.width      = $(newWindow).style.width;
     if(content !== null) {
         var appContent = generate("iframe", newWindow);
         $(appContent).setAttribute("src", content);
@@ -540,32 +540,13 @@ function newWindow(x, y, title, content, resize, min, max) {
     var minString = "";
     var maxString = "";
     if(min)
-        minString = "<img draggable=\"false\" ondragstart=\"return false;\" src=\"sys/skins/" +
-                    lStore("skin") + "/ui/min.png\" onmouseover=\"this.src='sys/skins/" +
-                    lStore("skin") + "/ui/minHover.png';\" onmouseout=\"this.src='sys/skins/" +
-                    lStore("skin") + "/ui/min.png';\" onmousedown=\"this.src='sys/skins/" +
-                    lStore("skin") + "/ui/minDown.png';\" onmouseup=\"this.src='sys/skins/" +
-                    lStore("skin") + "/ui/min.png';\" class=\"minButton\" onclick=\"minMaxWindow('" +
-                    newWindow + "','" + windowTab + "')\"/>";
+        minString = "<button class=\"minButton\" onclick=\"minMaxWindow('" + newWindow + "','" + windowTab + "')\">&#818;</button>";
 
     if(max)
-        maxString = "<img draggable=\"false\" ondragstart=\"return false;\" src=\"sys/skins/" +
-            lStore("skin") + "/ui/max.png\" onmouseover=\"this.src='sys/skins/" +
-            lStore("skin") + "/ui/maxHover.png';\" onmouseout=\"this.src='sys/skins/" +
-            lStore("skin") + "/ui/max.png';\" onmousedown=\"this.src='sys/skins/" +
-            lStore("skin") + "/ui/maxDown.png';\" onmouseup=\"this.src='sys/skins/" +
-            lStore("skin") + "/ui/max.png';\" class=\"maxButton\" onclick=\"maxRestoreWindow('" +
-            newWindow + "','" + windowTab + "')\"/>";
+        maxString = "<button class=\"maxButton\" onclick=\"maxRestoreWindow('" + newWindow + "','" + windowTab + "')\">&#9633;</button>";
 
-    $(titleBar).innerHTML = "<span class='titleBarText'>" + title + "</span>" +
-                            "<img draggable=\"false\" ondragstart=\"return false;\" src=\"sys/skins/" +
-                            lStore("skin") + "/ui/close.png\" onmouseover=\"this.src='sys/skins/" +
-                            lStore("skin") + "/ui/closeHover.png';\" onmouseout=\"this.src='sys/skins/" +
-                            lStore("skin") + "/ui/close.png';\" onmousedown=\"this.src='sys/skins/" +
-                            lStore("skin") + "/ui/closeDown.png';\" onmouseup=\"this.src='sys/skins/" +
-                            lStore("skin") + "/ui/close.png';\" class=\"closeButton\" onclick=\"destroyWindow('" +
-                            newWindow + "','" + windowTab + "')\"/>" + maxString + minString;
-
+    $(actionButtons).innerHTML = "<button class=\"closeButton\" onclick=\"destroyWindow('" + newWindow + "','" + windowTab + "')\">&#9747;</button>" + maxString + minString;
+    $(titleBar).innerHTML = "<span class='titleBarText'>" + title + "</span>";
     $(titleBar).setAttribute("class", "titleBar");
     $(titleBar).setAttribute("onmousedown", "dragWindow('" + newWindow + "', event);");
     $(windowTab).setAttribute("onclick", "minMaxWindow('" + newWindow + "','" + windowTab + "')");
@@ -591,21 +572,11 @@ function minMaxWindow(winID, tabID) {
 }
 
 function maxWindow(winID) {
-    lStore(winID + "Width",  $(winID).style.width);
-    lStore(winID + "Height", $(winID).style.height);
-    lStore(winID + "Left",   $(winID).style.left);
-    lStore(winID + "Top",    $(winID).style.top);
-    document.onmousemove  =  function() {return false};
+    saveWindowState(winID);
     $(winID).style.top    =  "22px";
     $(winID).style.left   =  "0px";
     $(winID).style.width  =  "100%";
     $(winID).style.height =  "calc(100% - 44px)";
-    $(winID).style.borderLeftStyle         = "none";
-    $(winID).style.borderRightStyle        = "none";
-    $(winID).style.borderTopLeftRadius     = "0px";
-    $(winID).style.borderTopRightRadius    = "0px";
-    $(winID).style.borderBottomLeftRadius  = "0px";
-    $(winID).style.borderBottomRightRadius = "0px";
 }
 
 function restoreWindow(winID) {
@@ -617,50 +588,51 @@ function restoreWindow(winID) {
     lStore(winID + "Height", "del");
     lStore(winID + "Left",   "del");
     lStore(winID + "Top",    "del");
-    $(winID).style.borderLeftStyle         = "solid";
-    $(winID).style.borderRightStyle        = "solid";
-    $(winID).style.borderTopLeftRadius     = "20px";
-    $(winID).style.borderTopRightRadius    = "20px";
-    $(winID).style.borderBottomLeftRadius  = "16px";
-    $(winID).style.borderBottomRightRadius = "16px";
 }
 
 function maxRestoreWindow(winID) {
-    document.onmousemove = function() {return false};
-    if(lStore(winID + "Width") !== null)
+    if(lStore(winID + "Width") !== null && lStore(winID + "Width") !== undefined)
         restoreWindow(winID);
-    else maxWindow(winID);
+    else
+        maxWindow(winID);
 }
 
-function dragWindow(appWindow,ev) {
+function saveWindowState(winID) {
+    lStore(winID + "Width",  $(winID).style.width);
+    lStore(winID + "Height", $(winID).style.height);
+    lStore(winID + "Left",   $(winID).style.left);
+    lStore(winID + "Top",    $(winID).style.top);
+}
+
+function dragWindow(appWindow, ev) {
     positionLeft = parseInt($(appWindow).style.left);
     positionTop  = parseInt($(appWindow).style.top);
     xcoor        = ev.clientX;
     ycoor        = ev.clientY;
+    var overlay  = generate("div", appWindow);
+    $(overlay).setAttribute("class", "windowOverlay");
 
-    document.onmousemove = function(ev) {
+    window.onmousemove = function(ev) {
         if($(appWindow) === undefined)
             return false;
 
-        var leftdist    =  positionLeft + ev.clientX - xcoor;
-        var topdist     =  positionTop  + ev.clientY - ycoor;
+        var leftdist = (positionLeft + ev.clientX) - xcoor;
+        var topdist  = (positionTop  + ev.clientY) - ycoor;
 
-        if(topdist  < 33) topdist  = "23";
-        if(leftdist < 10) leftdist = "0";
-
-        if((leftdist === 0) && (topdist == 23))
-            $(appWindow).style.borderTopLeftRadius = "0px";
-        else
-            $(appWindow).style.borderTopLeftRadius = "20px";
+        if(topdist < 31)
+            topdist  = "21";
+        if(leftdist < 10)
+            leftdist = "0";
 
         $(appWindow).style.opacity = 0.7;
         $(appWindow).style.top     = topdist  + "px";
         $(appWindow).style.left    = leftdist + "px";
 
-        document.onmouseup = function(ev) {
+        window.onmouseup = function(ev) {
+            $(overlay).remove();
             $(appWindow).style.opacity = 1.0;
-            document.onmousemove       = function() {return false};
-            document.onmouseup         = function() {return false};
+            window.onmousemove         = function() {return false};
+            window.onmouseup           = function() {return false};
             leftdist                   = null;
             topdist                    = null;
             xcoor                      = null;

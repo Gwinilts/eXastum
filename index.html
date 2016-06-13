@@ -4,47 +4,40 @@
     <title>eXastum</title>
     <script src="sys/libs/macgril.js"></script>
     <script src="sys/libs/eXastum.js"></script>
-    <script src="sys/libs/third_party/three/three.min.js"></script>
-    <link rel="stylesheet" href="sys/ui/skins/default/skin.css"></link>
+    <link rel="stylesheet" href="sys/ui/reset.css"></link>
     <link rel="stylesheet" href="sys/ui/layout.css"></link>
+    <link rel="stylesheet" href="sys/ui/skins/default/skin.css"></link>
 </head>
 <body onload="eXastumInit()">
     <header>
         <img id="menuButton" src="sys/ui/skins/default/imgs/menuIcon.png" onclick="mainMenu()"/>
         <div id="mainMenu">
             <ul>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
+                <li onclick="eX_launchApp('calculator')">Calculator</li>
+                <li onclick="eX_launchApp('text_editor')">Text Editor</li>
+                <li onclick="eX_launchApp('video_player')">Video Player</li>
+                <li onclick="eX_launchApp('terminal')">Terminal</li>
             </ul>
         </div>
+        <div id="sysTasks">
+        </div>
+        <span id="clock"></span>
     </header>
     <section id="desktop">
+        <div id="windowSystem">
+        </div>
+        <!--
         <div id="icons">
         </div>
+        -->
         <div id="dock">
         </div>
     </section>
+    <!--
     <aside>
 
     </aside>
+    -->
     <footer onmouseover="showDock()">
         <span>&copy; Brian Millar 2016</span>
         <button onclick="systemReset()">Reset</button>

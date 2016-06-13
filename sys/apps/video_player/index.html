@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            eXastum Video Player
+        </title>
+        <style>
+            body {
+                padding: 0px;
+                margin:  0px;
+            }
+
+            #eXVideo {
+                z-index:  0;
+                position: fixed;
+                top:      0px;
+                left:     0px;
+            }
+
+            #baseControls {
+                background-color: rgba(0, 0, 0, 0.8);
+                box-shadow: 0px 0px 20px #000;
+                width:    100%;
+                height:   50px;
+                position: fixed;
+                bottom:   0px;
+                left:     0px;
+                z-index:  2;
+                -moz-animation: slideup 0.4s;
+            }
+
+            @-moz-keyframes slideup {
+                0% {
+                    opacity: 0.0;
+                    -moz-transform: translateY(50px);
+                }
+
+                100% {
+                    opacity: 1.0;
+                    -moz-transform: translateY(0px);
+                }
+            }
+
+            #macgril {
+                display: none;
+            }
+        </style>
+        <script>
+            function init() {
+                document.getElementById("eXVideo").addEventListener("play", function () {
+                    document.getElementById("ppButton").innerText = "Pause";
+                });
+
+                document.getElementById("eXVideo").addEventListener("pause", function () {
+                    document.getElementById("ppButton").innerText = "Play";
+                });
+
+                document.getElementById("eXVideo").addEventListener("mouseover", function () {
+                    document.getElementById("baseControls").style.display = "block";
+                });
+
+                document.getElementById("eXVideo").addEventListener("mouseout", function () {
+                    document.getElementById("baseControls").style.display = "none";
+                });
+
+                document.getElementById("baseControls").addEventListener("mouseover", function () {
+                    document.getElementById("baseControls").style.display = "block";
+                });
+
+                document.getElementById("baseControls").addEventListener("mouseout", function () {
+                    document.getElementById("baseControls").style.display = "none";
+                });
+            }
+
+            function playPause() {
+                if (document.getElementById("eXVideo").paused)
+                    document.getElementById("eXVideo").play();
+                else
+                    document.getElementById("eXVideo").pause();
+            }
+        </script>
+        <script src="../../libs/macgril.js"></script>
+    </head>
+    <body onload="init()">
+        <video id="eXVideo" src="test.mp4" poster="imgs/poster.jpg" width="100%" height="100%"></video>
+        <div id="baseControls">
+            <button id="ppButton" onclick="playPause()">Play</button>
+            <button onclick="fOpen(function (file) {$('eXVideo').src = file; $('eXVideo').play();}, 'video/*');">Open</button>
+            <input type="range" min="0" max="10"/>
+            <div id="macgril"></div>
+        </div>
+    </body>
+</html>

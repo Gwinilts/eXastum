@@ -1,14 +1,870 @@
-body {
-    font-family: sans-serif;
+@font-face {
+    font-family: eXastumDefault;
+    src: local(eXastumDefault), URL("fonts/LiberationSans-Regular.ttf") format("truetype");
 }
+
+body {
+    font-family:      eXastumDefault, sans-serif;
+    font-size:        12px;
+    margin:           0px;
+    overflow:         hidden;
+    color:            #838383;
+    background-color: #000000;
+
+    user-select:         none;
+    -ms-user-select:     none;
+    -moz-user-select:    none;
+    -webkit-user-select: none;
+
+    font-smoothing:         antialiased;
+    -ms-font-smoothing:     antialiased;
+    -moz-font-smoothing:    antialiased;
+    -webkit-font-smoothing: antialiased;
+}
+
+ul {
+    margin-top:   10px;
+    margin-left:  0px;
+    margin-right: 0px;
+    padding:      0px;
+}
+
+li {
+    cursor:        default;
+    margin-left:   0px;
+    width:         150px;
+    height:        25px;
+    padding-left:  15px;
+    padding-right: 5px;
+}
+
+img.dockIcon {
+    width:       70px;
+    height:      70px;
+    margin-top:  4px;
+    margin-left: 12px;
+    display:     inline;
+
+    transform:         translateY(-50px);
+    -ms-transform:     translateY(-50px);
+    -moz-transform:    translateY(-50px);
+    -webkit-transform: translateY(-50px);
+
+    transition:         0.4s;
+    -ms-transition:     0.4s;
+    -moz-transition:    0.4s;
+    -webkit-transition: 0.4s;
+}
+
+img.dockIcon:hover {
+    transform:         rotateX(15deg) rotateY(-10deg) scale(1.6) translateY(-50px);
+    -ms-transform:     rotateX(15deg) rotateY(-10deg) scale(1.6) translateY(-50px);
+    -moz-transform:    rotateX(15deg) rotateY(-10deg) scale(1.6) translateY(-50px);
+    -webkit-transform: rotateX(15deg) rotateY(-10deg) scale(1.6) translateY(-50px);
+
+    transition:         0.3s;
+    -ms-transition:     0.3s;
+    -moz-transition:    0.3s;
+    -webkit-transition: 0.3s;
+}
+
+img.dockIcon:active {
+    transform:         rotateX(-15deg) rotateY(10deg) scale(1.3) translateY(-45px);
+    -ms-transform:     rotateX(-15deg) rotateY(10deg) scale(1.3) translateY(-45px);
+    -moz-transform:    rotateX(-15deg) rotateY(10deg) scale(1.3) translateY(-45px);
+    -webkit-transform: rotateX(-15deg) rotateY(10deg) scale(1.3) translateY(-45px);
+
+    transition:         0.0s;
+    -ms-transition:     0.0s;
+    -moz-transition:    0.0s;
+    -webkit-transition: 0.0s;
+}
+
+button.minButton {
+    width:            30px;
+    height:           100%;
+    float:            right;
+    box-shadow:       none;
+    background-color: darkblue;
+    border:           none;
+    border-radius:    0px;
+}
+
+button.maxButton {
+    width:            30px;
+    height:           100%;
+    float:            right;
+    box-shadow:       none;
+    background-color: darkgreen;
+    border:           none;
+    border-radius:    0px;
+}
+
+button.closeButton {
+    width:            30px;
+    height:           100%;
+    float:            right;
+    box-shadow:       none;
+    background-color: darkred;
+    border:           none;
+    border-radius:    0px;
+}
+
+span.titleBarText {
+    margin-top:  5px;
+    float:       left;
+    margin-left: 12px;
+    font-size:   15px;
+
+    animation:         titleFade 1.0s;
+    -webkit-animation: titleFade 1.0s;
+    -moz-animation:    titleFade 1.0s;
+    -ms-animation:     titleFade 1.0s;
+}
+
+span.titleBar {
+    cursor:              move;
+    position:            absolute;
+    margin-top:          10px;
+    height:              26px;
+    width:               100%;
+    margin-top:          0px;
+    border-bottom-style: solid;
+    border-width:        1px;
+    border-color:        #000;
+    background-color:    rgba(0, 0, 0, 0.7);
+    background-size:     100% 100%;
+}
+
+textarea {
+    border:      none;
+    outline:     none;
+    padding:     10px;
+    font-family: eXastumDefault;
+}
+
+textarea.cli {
+    width:            calc(100% - 20px);
+    height:           calc(100% - 51px);
+    margin-top:       31px;
+    background-color: #000000;
+    color:            #e3e3e3;
+    position:         absolute;
+    font-size:        12px;
+    resize:           none;
+}
+
+input {
+    border:      none;
+    outline:     none;
+    font-family: eXastumDefault;
+}
+
+input.text {
+    background-image: URL("ui/backing_down.png");
+    background-size:  100% 100%;
+    text-shadow:      1px 1px 3px #000000;
+    box-shadow:       inset 0px 0px 8px #000000;
+    border-radius:    20px;
+    padding-left:     8px;
+    padding-right:    8px;
+    padding-top:      2px;
+    padding-bottom:   2px;
+    color:            #838383;
+    border-width:     1px;
+    border-style:     inset;
+}
+
+button.panelButton {
+    margin-left: 10px;
+}
+
+iframe {
+    border: none;
+}
+
+p {
+    text-shadow: 1px 1px 3px #000;
+}
+
+div.window {
+    max-width:                  100%;
+    max-height:                 100%;
+    position:                   absolute;
+    z-index:                    9;
+    overflow:                   hidden;
+    box-shadow:                 0px 0px 10px #000000;
+    background-color:           rgba(0, 0, 0, 0.8);
+
+    animation:         window 0.4s;
+    -ms-animation:     window 0.4s;
+    -moz-animation:    window 0.4s;
+    -webkit-animation: window 0.4s;
+
+    transition:         0.4s box-shadow;
+    -ms-transition:     0.4s box-shadow;
+    -moz-transition:    0.4s box-shadow;
+    -webkit-transition: 0.4s box-shadow;
+}
+
+div.window:hover {
+    z-index:    10;
+    box-shadow: 0px 0px 4px #000000;
+
+    transition:         0.4s box-shadow;
+    -ms-transition:     0.4s box-shadow;
+    -moz-transition:    0.4s box-shadow;
+    -webkit-transition: 0.4s box-shadow;
+}
+
+div.windowOverlay {
+    display:  block;
+    width:    100%;
+    height:   calc(100% - 27px);
+    top:      27px;
+    position: absolute;
+}
+
+div.actionButtons {
+    position: absolute;
+    top:      0px;
+    right:    0px;
+    height:   26px;
+}
+
+span.workTab {
+    font-size:        14px;
+    background-image: URL("ui/backing_down.png");
+    background-size:  100% 100%;
+    padding-left:     8px;
+    padding-right:    8px;
+    border-radius:    20px;
+    box-shadow:       inset 0px 0px 8px #000000;
+    text-shadow:      0px 0px 8px #000000;
+    margin-left:      6px;
+    cursor:           pointer;
+}
+
+div.sysDialog {
+    position:                   absolute;
+    overflow:                   auto;
+    z-index:                    11;
+    box-shadow:                 0px 0px 25px #000000;
+    background-color:           rgba(0,0,0,0.8);
+    border-left-style:          solid;
+    border-right-style:         solid;
+    border-width:               1px;
+    border-color:               #fff;
+    border-top-left-radius:     20px;
+    border-top-right-radius:    20px;
+    border-bottom-left-radius:  16px;
+    border-bottom-right-radius: 16px;
+
+    transition:         0.4s box-shadow;
+    -ms-transition:     0.4s box-shadow;
+    -moz-transition:    0.4s box-shadow;
+    -webkit-transition: 0.4s box-shadow;
+}
+
+div.sysDialogUrgent {
+    position:                   absolute;
+    overflow:                   auto;
+    z-index:                    11;
+    box-shadow:                 0px 0px 25px #000000;
+    background-color:           rgba(0,0,0,0.8);
+    border-left-style:          solid;
+    border-right-style:         solid;
+    border-width:               1px;
+    border-color:               #fff;
+    border-top-left-radius:     20px;
+    border-top-right-radius:    20px;
+    border-bottom-left-radius:  16px;
+    border-bottom-right-radius: 16px;
+
+    animation:         sysDialog 1s;
+    -ms-animation:     sysDialog 1s;
+    -moz-animation:    sysDialog 1s;
+    -webkit-animation: sysDialog 1s;
+
+    animation-iteration-count:         infinite;
+    -ms-animation-iteration-count:     infinite;
+    -moz-animation-iteration-count:    infinite;
+    -webkit-animation-iteration-count: infinite;
+
+    transition:         0.4s box-shadow;
+    -ms-transition:     0.4s box-shadow;
+    -moz-transition:    0.4s box-shadow;
+    -webkit-transition: 0.4s box-shadow;
+}
+
+span.sysDialog {
+    position:      absolute;
+    font-size:     16px;
+    margin-top:    40px;
+    margin-left:   10px;
+    margin-right:  10px;
+    margin-bottom: 10px;
+}
+
+iframe.app {
+    width:            100%;
+    height:           calc(100% - 27px);
+    margin-top:       27px;
+    margin-bottom:    0px;
+    margin-left:      0px;
+    margin-right:     0px;
+    background-color: #000000;
+    color:            #e3e3e3;
+    position:         absolute;
+    font-family:      sans-serif;
+    resize:           none;
+}
+
+img.barIcon {
+    height:         18px;
+    width:          18px;
+    margin-top:     1px;
+    margin-left:    5px;
+    opacity:        0.7;
+    cursor:         pointer;
+}
+
+img.barIcon:hover {
+    opacity: 1.0;
+}
+
+img.powerButtons {
+    margin-left: 8px;
+    width:       26px;
+    height:      26px;
+    display:     inline;
+    cursor:      pointer;
+}
+
+p.menuTextLink {
+    margin-left: 10px;
+    cursor:      pointer;
+    font-size:   14px;
+    text-shadow: 1px 1px 3px #000000;
+}
+
+p.menuTextLink:hover {
+    text-decoration: underline;
+}
+
+h1.menuTitle {
+    margin-left: 20px;
+    font-weight: lighter;
+    margin-top:  10px;
+
+    animation:         titleFade 1.0s;
+    -webkit-animation: titleFade 1.0s;
+    -moz-animation:    titleFade 1.0s;
+    -ms-animation:     titleFade 1.0s;
+}
+
+#bootsplash {
+    position: fixed;
+    top:      0px;
+    left:     0px;
+    z-index:  20;
+    height:   100%;
+    width:    100%;
+}
+
+#login {
+    display: none;
+}
+
+#loginForm {
+    position:      fixed;
+    top:           150px;
+    left:          calc(50% - 171px);
+    padding:       20px;
+    border-width:  1px;
+    border-radius: 20px;
+    width:         300px;
+    z-index:       2;
+    box-shadow:    0px 0px 30px #000;
+    border-left-style:  solid;
+    border-right-style: solid;
+    background-image:   URL("ui/button.png");
+    background-size:    100% 100%;
+}
+
+#userField {
+    margin-left:    50px;
+    width:          176px;
+    padding-left:   10px;
+    padding-right:  10px;
+    padding-top:    4px;
+    padding-bottom: 3px;
+}
+
+#passField {
+    margin-left:    50px;
+    width:          176px;
+    padding-left:   10px;
+    padding-right:  10px;
+    padding-top:    4px;
+    padding-bottom: 3px;
+}
+
+#loginBG {
+    position:         fixed;
+    top:              0px;
+    left:             0px;
+    z-index:          1;
+    width:            100%;
+    height:           100%;
+    background-color: transparent;
+    background-size:  100% 100%;
+    background-image: URL("ui/login.png");
+}
+
+#abouteXastum {
+    position: absolute;
+    z-index:  20;
+    top:      150px;
+    left:     500px;
+    width:    400px;
+    height:   200px;
+    display:  none;
+    padding:  30px;
+    border-style: inset;
+    border-width: 1px;
+    overflow-X:   hidden;
+    overflow-Y:   scroll;
+    border-radius:    20px;
+    background-image: URL("ui/sider.png");
+    background-size:  100% 100%;
+    box-shadow:       0px 0px 20px #000000;
+}
+
+#topBar {
+    z-index:             12;
+    position:            fixed;
+    top:                 0px;
+    left:                0px;
+    right:               0px;
+    margin:              0px;
+    width:               100%;
+    height:              22px;
+    overflow:            hidden;
+    background-color:    transparent;
+    background-image:    URL("ui/bar.png");
+    background-size:     100% 100%;
+    box-shadow:          0px 10px 20px #000000;
+    border-width:        1px;
+    border-bottom-style: outset;
+    border-bottom-left-radius:  12px;
+    border-bottom-right-radius: 12px;
+}
+
+#baseBar {
+    z-index:          12;
+    position:         fixed;
+    bottom:           0px;
+    left:             0px;
+    right:            0px;
+    margin:           0px;
+    width:            100%;
+    height:           22px;
+    overflow:         hidden;
+    background-color: transparent;
+    background-image: URL("ui/bar.png");
+    background-size:  100% 100%;
+    box-shadow:       0px -10px 20px #000000;
+    border-width:     1px;
+    border-top-style: outset;
+    border-top-left-radius:  12px;
+    border-top-right-radius: 12px;
+}
+
+#infoBar {
+    margin-top:  1px;
+    width:       120px;
+    height:      12px;
+    margin-left: 4px;
+}
+
+#timePanel {
+    position:                   fixed;
+    width:                      315px;
+    top:                        21px;
+    right:                      0px;
+    background-image:           URL("ui/button.png");
+    padding:                    20px;
+    background-size:            100% 100%;
+    z-index:                    11;
+    display:                    none;
+    background-color:           rgba(0,0,0,0.7);
+    box-shadow:                 0px 8px 20px #000000;
+    border-width:               1px;
+    border-style:               inset;
+    border-bottom-left-radius:  20px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius:     15px;
+    border-top-right-radius:    10px;
+
+    animation:         0.4s sysPanel;
+    -webkit-animation: 0.4s sysPanel;
+    -moz-animation:    0.4s sysPanel;
+    -ms-animation:     0.4s sysPanel;
+}
+
+#audioPanel {
+    position:                   fixed;
+    top:                        21px;
+    right:                      0px;
+    background-image:           URL("ui/button.png");
+    padding:                    20px;
+    background-size:            100% 100%;
+    z-index:                    11;
+    display:                    none;
+    background-color:           rgba(0,0,0,0.7);
+    box-shadow:                 0px 8px 20px #000000;
+    border-width:               1px;
+    border-style:               inset;
+    border-bottom-left-radius:  20px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius:     15px;
+    border-top-right-radius:    10px;
+
+    animation:         0.4s sysPanel;
+    -webkit-animation: 0.4s sysPanel;
+    -moz-animation:    0.4s sysPanel;
+    -ms-animation:     0.4s sysPanel;
+}
+
+#analogClock {
+    width:            125px;
+    height:           125px;
+    background-image: URL("ui/clockBack.png");
+    background-size:  100% 100%;
+    position:         absolute;
+    right:            200px;
+}
+
+#hourHand {
+    position: absolute;
+    margin:   0px;
+}
+
+#minsHand {
+    position: absolute;
+    margin:   0px;
+}
+
+#secsHand {
+    position: absolute;
+    margin:   0px;
+}
+
+#miniCal {
+    font-size:   14px;
+    color:       #838383;
+    margin-left: 155px;
+    text-shadow: 1px 1px 4px #000000;
+}
+
+#miniCal td {
+    text-align: center;
+    padding:    3px;
+}
+
+#userName {
+    position:   absolute;
+    top:        0px;
+    right:      8px;
+    margin-top: 2px;
+    font-size:  16px;
+    color:      #838383;
+}
+
+#sysTasks {
+    position: fixed;
+    top:      2px;
+    left:     106px;
+    right:    200px;
+    overflow: hidden;
+}
+
+#sysTray {
+    float:        right;
+    top:          1px;
+    margin-right: 9px;
+}
+
+#sysClock {
+    font-family:  eXastumDefault;
+    font-size:    15px;
+    float:        right;
+    margin-right: 5px;
+    margin-top:   -2px;
+    text-shadow:  1px 1px 3px #000000;
+    color:        #838383;
+    cursor:       pointer;
+}
+
+#buildNum {
+    font-size:   14px;
+    position:    fixed;
+    bottom:      36px;
+    right:       15px;
+    text-shadow: 1px 1px 3px #000000;
+}
+
+#sysSettings {
+    width:   500px;
+    height:  400px;
+    resize:  none;
+    display: none;
+}
+
+#settingsSidebar {
+    background-size:    100% 100%;
+    background-image:   URL("ui/sider.png");
+    width:              80px;
+    margin-top:         30px;
+    padding:            20px;
+    height:             100%;
+    box-shadow:         0px 10px 20px #000;
+    border-right-style: solid;
+    border-width:       1px;
+}
+
+#dockFirstIcon {
+    margin-left: 52px;
+}
+
+#dock {
+    display:          block;
+    position:         fixed;
+    bottom:           20px;
+    left:             calc(50% - 350px);
+    width:            700px;
+    height:           50px;
+    overflow:         visible;
+    background-color: transparent;
+    background-image: URL("ui/dock.png");
+    background-size:  100% 100%;
+
+    transform:         translateY(140px);
+    -ms-transform:     translateY(140px);
+    -moz-transform:    translateY(140px);
+    -webkit-transform: translateY(140px);
+
+    transition:         0.4s transform;
+    -ms-transition:     0.4s transform;
+    -moz-transition:    0.4s transform;
+    -webkit-transition: 0.4s transform;
+}
+
+#menuRight {
+    position:                   absolute;
+    right:                      0px;
+    top:                        0px;
+    width:                      150px;
+    height:                     100%;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius:    15px;
+    background-image:           URL("ui/sider.png");
+    background-size:            100% 100%;
+    border-width:               1px;
+    border-left-style:          solid;
+    box-shadow:                 0px 0px 8px #000000;
+    background-color:           transparent;
+}
+
+#menuButton {
+    position: fixed;
+    z-index:  20;
+    height:   23px;
+}
+
+#menuLinks {
+    position: absolute;
+    bottom:   40px;
+}
+
+#menuIconPreview {
+    margin-left: 20px;
+    margin-top:  25px;
+}
+
+#menuAppsList {
+    width:      289px;
+    position:   absolute;
+    top:        35px;
+    height:     234px;
+    box-shadow: inset 0px 0px 20px #000000;
+}
+
+#menuBottom {
+    position:                  absolute;
+    bottom:                    0px;
+    height:                    40px;
+    border-top-style:          solid;
+    border-width:              1px;
+    width:                     289px;
+    background-image:          URL("ui/button.png");
+    background-size:           100% 100%;
+    border-bottom-left-radius: 15px;
+}
+
+#menuTop {
+    position:               absolute;
+    top:                    0px;
+    height:                 44px;
+    border-bottom-style:    solid;
+    border-width:           1px;
+    width:                  289px;
+    background-image:       URL("ui/button.png");
+    background-size:        100% 100%;
+    border-top-left-radius: 10px;
+}
+
+#menuSearch {
+    margin-left: 10px;
+    margin-top:  10px;
+    width:       130px;
+}
+
+#menuPowerButtons {
+    position:    absolute;
+    bottom:      8px;
+    margin-left: 60px;
+}
+
+#quickLaunch {
+    margin-left: 52px;
+}
+
+#desktop {
+    position:         fixed;
+    top:              0px;
+    left:             0px;
+    right:            0px;
+    bottom:           0px;
+    margin:           0px;
+    overflow:         hidden;
+    background-color: transparent;
+}
+
+#leftHotspot {
+    position:         fixed;
+    top:              0px;
+    left:             0px;
+    width:            8px;
+    height:           100%;
+    background-color: transparent;
+}
+
+#rightHotspot {
+    position:         fixed;
+    top:              0px;
+    right:            0px;
+    width:            8px;
+    height:           100%;
+    background-color: transparent;
+}
+
+#loggedIn {
+    display: none;
+}
+
+#setup {
+    display: none;
+}
+
+#wallpaper {
+    z-index:  -1;
+    position: fixed;
+    top:      0px;
+    bottom:   0px;
+    left:     0px;
+    right:    0px;
+    margin:   0px;
+    width:    100%;
+    height:   100%;
+    overflow: hidden;
+}
+
+#widgetLayer {
+    z-index:          0;
+    position:         fixed;
+    top:              0px;
+    bottom:           0px;
+    left:             0px;
+    right:            0px;
+    margin:           0px;
+    width:            100%;
+    height:           100%;
+    overflow:         hidden;
+    background-color: transparent;
+}
+
+#windowLayer {
+    z-index:          1;
+    position:         fixed;
+    top:              0px;
+    bottom:           0px;
+    left:             0px;
+    right:            0px;
+    margin:           0px;
+    width:            100%;
+    height:           100%;
+    overflow:         hidden;
+    background-color: transparent;
+}
+
+#console {
+    width:            100%;
+    height:           100%;
+    resize:           none;
+    background-color: #000000;
+}
+
+
+@keyframes         window {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; transform:         scale(0.0) translateY(150px) rotateY(45deg) rotateX(45deg);} 100% {opacity: 1.0; transform:         scale(1.0) translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-moz-keyframes    window {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -moz-transform:    scale(0.0) translateY(150px) rotateY(45deg) rotateX(45deg);} 100% {opacity: 1.0; -moz-transform:    scale(1.0) translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-webkit-keyframes window {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -webkit-transform: scale(0.0) translateY(150px) rotateY(45deg) rotateX(45deg);} 100% {opacity: 1.0; -webkit-transform: scale(1.0) translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-ms-keyframes     window {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -ms-transform:     scale(0.0) translateY(150px) rotateY(45deg) rotateX(45deg);} 100% {opacity: 1.0; -ms-transform:     scale(1.0) translateY(0px) rotateY(0deg) rotateX(0deg);}}
+
+@keyframes         mainMenu {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; transform:         translateY(-320px) translateX(-440px) rotateY(-45deg) rotateX(45deg);} 100% {opacity: 1.0; transform:         translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-moz-keyframes    mainMenu {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -moz-transform:    translateY(-320px) translateX(-440px) rotateY(-45deg) rotateX(45deg);} 100% {opacity: 1.0; -moz-transform:    translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-webkit-keyframes mainMenu {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -webkit-transform: translateY(-320px) translateX(-440px) rotateY(-45deg) rotateX(45deg);} 100% {opacity: 1.0; -webkit-transform: translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-ms-keyframes     mainMenu {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -ms-transform:     translateY(-320px) translateX(-440px) rotateY(-45deg) rotateX(45deg);} 100% {opacity: 1.0; -ms-transform:     translateY(0px) rotateY(0deg) rotateX(0deg);}}
+
+@keyframes         sysPanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; transform:         translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; transform:         translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-moz-keyframes    sysPanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -moz-transform:    translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; -moz-transform:    translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-webkit-keyframes sysPanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -webkit-transform: translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; -webkit-transform: translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-ms-keyframes     sysPanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -ms-transform:     translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; -ms-transform:     translateY(0px) rotateY(0deg) rotateX(0deg);}}
+
+@keyframes         fadeInOut {0% {opacity: 0.6;} 50% {opacity: 1.0;} 100% {opacity: 0.6;}}
+@-moz-keyframes    fadeInOut {0% {opacity: 0.6;} 50% {opacity: 1.0;} 100% {opacity: 0.6;}}
+@-webkit-keyframes fadeInOut {0% {opacity: 0.6;} 50% {opacity: 1.0;} 100% {opacity: 0.6;}}
+@-ms-keyframes     fadeInOut {0% {opacity: 0.6;} 50% {opacity: 1.0;} 100% {opacity: 0.6;}}
+
+@keyframes         sysDialog {0% {box-shadow: 0px 0px 25px #000000;} 50% {box-shadow: 0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow: 0px 0px 25px #000000;}}
+@-moz-keyframes    sysDialog {0% {box-shadow: 0px 0px 25px #000000;} 50% {box-shadow: 0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow: 0px 0px 25px #000000;}}
+@-webkit-keyframes sysDialog {0% {box-shadow: 0px 0px 25px #000000;} 50% {box-shadow: 0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow: 0px 0px 25px #000000;}}
+@-ms-keyframes     sysDialog {0% {box-shadow: 0px 0px 25px #000000;} 50% {box-shadow: 0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow: 0px 0px 25px #000000;}}
+
+@keyframes         titleFade {0% {opacity: 0.0; margin-left: -10px;} 100% {opacity: 1.0;}}
+@-moz-keyframes    titleFade {0% {opacity: 0.0; margin-left: -10px;} 100% {opacity: 1.0;}}
+@-webkit-keyframes titleFade {0% {opacity: 0.0; margin-left: -10px;} 100% {opacity: 1.0;}}
+@-ms-keyframes     titleFade {0% {opacity: 0.0; margin-left: -10px;} 100% {opacity: 1.0;}}
 
 header {
     position:         fixed;
     top:              0px;
     left:             0px;
     width:            100%;
-    height:           21px;
+    height:           22px;
     background-color: rgba(0, 0, 0, 0.8);
+    box-shadow:       0px 0px 4px #000;
     z-index:          3;
 }
 
@@ -17,8 +873,9 @@ footer {
     bottom:           0px;
     left:             0px;
     width:            100%;
-    height:           21px;
+    height:           22px;
     background-color: rgba(0, 0, 0, 0.8);
+    box-shadow:       0px 0px 4px #000;
     z-index:          3;
 }
 
@@ -58,8 +915,7 @@ aside {
     position: fixed;
     top:      0px;
     left:     0px;
-    width:    35px;
-    height:   35px;
+    height:   22px;
     z-index:  4;
 }
 
@@ -67,16 +923,12 @@ aside {
     display:    none;
     z-index:    3;
     position:   fixed;
-    top:        26px;
-    left:       5px;
+    top:        22px;
+    left:       0px;
     width:      450px;
     height:     350px;
     box-shadow: 0px 0px 4px #000;
     background-color:           rgba(0, 0, 0, 0.8);
-    border-top-left-radius:     10px;
-    border-top-right-radius:    25px;
-    border-bottom-left-radius:  50px;
-    border-bottom-right-radius: 80px;
 }
 
 #mainMenu ul {
