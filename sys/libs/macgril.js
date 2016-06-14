@@ -536,6 +536,15 @@ function newWindow(x, y, title, content, resize, min, max) {
         var appContent = generate("iframe", newWindow);
         $(appContent).setAttribute("src", content);
         $(appContent).setAttribute("class", "app");
+        //Sets up the application environment variables
+        $(appContent).addEventListener("load", function () {
+                var script = $(this.id).contentWindow.document.createElement('script');
+                script.innerText = "windowID = '"   + newWindow  +
+                                   "'; frameID = '" + appContent +
+                                   "'; tabID = '"   + windowTab  +
+                                   "'; init();";
+                $(this.id).contentWindow.document.head.appendChild(script);
+        });
     }
     var minString = "";
     var maxString = "";
@@ -555,8 +564,8 @@ function newWindow(x, y, title, content, resize, min, max) {
 }
 
 function destroyWindow(winID, tabID) {
-    $(winID).remove();
     $(tabID).remove();
+    $(winID).remove();
 }
 
 function minMaxWindow(winID, tabID) {
@@ -619,10 +628,22 @@ function dragWindow(appWindow, ev) {
         var leftdist = (positionLeft + ev.clientX) - xcoor;
         var topdist  = (positionTop  + ev.clientY) - ycoor;
 
-        if(topdist < 31)
-            topdist  = "21";
+        var sysWidth  = window.innerWidth;
+        var sysHeight = window.innerHeight;
+
+        var appWidth  = $(appWindow).scrollWidth;
+        var appHeight = $(appWindow).scrollHeight;
+
+        if(topdist < 32)
+            topdist = "22";
+        else if (topdist > (sysHeight - (appHeight + 32)))
+            topdist = sysHeight - (appHeight + 22);
+
         if(leftdist < 10)
             leftdist = "0";
+        else if (leftdist > (sysWidth - (appWidth + 10)))
+            leftdist = sysWidth - appWidth;
+
 
         $(appWindow).style.opacity = 0.7;
         $(appWindow).style.top     = topdist  + "px";

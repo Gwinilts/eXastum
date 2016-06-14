@@ -52,13 +52,13 @@ function systemReset() {
 
 function eX_launchApp(appName) {
     loadManifest("sys/apps/" + appName + "/manifest.json");
-    newWindow(640, 400, appName, "sys/apps/" + appName + "/index.html", "horizontal", true, true);
+    newWindow(300, 250, appName, "sys/apps/" + appName + "/index.html", "horizontal", true, true);
 }
 
 function loadManifest(appName) {
 }
 
 function clockLoop() {
-    $("clock").innerText = fDate() + " | " + fTime();
+    $("clock").innerText = " | " + fDate() + " | " + fTime();
     setTimeout(clockLoop, 500);
 }

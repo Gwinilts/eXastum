@@ -14,15 +14,21 @@
         <div id="mainMenu">
             <ul>
                 <li onclick="eX_launchApp('calculator')">Calculator</li>
+                <li onclick="eX_launchApp('ex_studio')">eXastum Studio</li>
                 <li onclick="eX_launchApp('text_editor')">Text Editor</li>
                 <li onclick="eX_launchApp('video_player')">Video Player</li>
                 <li onclick="eX_launchApp('terminal')">Terminal</li>
             </ul>
         </div>
-        <div id="sysTasks">
+        <div id="sysTasks"></div>
+        <div id="sysTray">
+            <span>&#128266;</span>
+            <span id="clock"></span>
         </div>
-        <span id="clock"></span>
     </header>
+    <div id="soundPanel">
+        <input type="range" min="0" max="100"/>
+    </div>
     <section id="desktop">
         <div id="windowSystem">
         </div>
@@ -34,11 +40,9 @@
         </div>
         <span id="buildNum"></span>
     </section>
-    <!--
     <aside>
 
     </aside>
-    -->
     <footer onmouseover="showDock()">
         <span>&copy; Brian Millar 2016</span>
         <button onclick="systemReset()">Reset</button>
