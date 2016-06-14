@@ -1,6 +1,9 @@
+var VERSION = "5.0.0.3-alpha";
+
 function eXastumInit() {
     if (lStore("firstUse") !== "false")
         runSetup();
+    $("buildNum").innerHTML = "eXastum Desktop<br/>Build " + VERSION;
     clockLoop();
 }
 
