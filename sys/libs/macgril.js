@@ -538,11 +538,12 @@ function newWindow(x, y, title, content, resize, min, max) {
         $(appContent).setAttribute("class", "app");
         //Sets up the application environment variables
         $(appContent).addEventListener("load", function () {
+                var eX_exit = "function eX_exit() {window.parent.$(tabID).remove(); window.parent.$(windowID).remove();}";
                 var script = $(this.id).contentWindow.document.createElement('script');
                 script.innerText = "windowID = '"   + newWindow  +
                                    "'; frameID = '" + appContent +
                                    "'; tabID = '"   + windowTab  +
-                                   "'; init();";
+                                   "'; init(); " + eX_exit;
                 $(this.id).contentWindow.document.head.appendChild(script);
         });
     }

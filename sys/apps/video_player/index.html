@@ -91,7 +91,7 @@
         <div id="baseControls">
             <button id="ppButton" onclick="playPause()">Play</button>
             <button onclick="fOpen(function (file) {$('eXVideo').src = file; $('eXVideo').play();}, 'video/*');">Open</button>
-            <button onclick=" window.parent.$(tabID).remove(); window.parent.$(windowID).remove();">Quit</button>
+            <button onclick="eX_exit()">Quit</button>
             <div id="macgril"></div>
         </div>
     </body>
