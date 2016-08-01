@@ -15,14 +15,18 @@ function eX_scrSavMove() {
 function eX_clearScrSav() {
     $("screenSaver").style.display = "none";
     clearTimeout(eX_scrsav_move_tmr);
-    eX_scrsav_tmr = setTimeout(eX_startScrSav, 5000);
+    eX_scrsav_tmr = setTimeout(eX_startScrSav, eX_scrSavTime);
 }
 
 function eX_mainMenu() {
-    if ($("mainMenu").style.display == "block")
+    if ($("mainMenu").style.display == "block") {
         $("mainMenu").style.display = "none";
-    else
+        $("menuButton").src = "sys/ui/skins/default/imgs/menuIcon.png";
+    }
+    else {
         $("mainMenu").style.display = "block";
+        $("menuButton").src = "sys/ui/skins/default/imgs/menuPress.png";
+    }
 }
 
 function eX_showDock() {
