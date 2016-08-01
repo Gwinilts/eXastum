@@ -10,9 +10,9 @@
 
             function loadAudio(x) {
                 $("test").src = x;
-                parent.eX_addAudioSource($("test"));
+                var audioData = parent.eX_addAudioSource($("test"));
                 $("test").play();
-                parent.eX_startAudioVisualization(window.parent.$(frameID).contentWindow.document.getElementById("viz"), 200, 200);
+                parent.eX_startAudioVisualization(window.parent.$(frameID).contentWindow.document.getElementById("viz"), 200, 200, audioData.analyser1, audioData.analyser2);
             }
         </script>
         <script src="../../libs/macgril.js"></script>

@@ -1,10 +1,8 @@
-var eX_version = "5.0.2.1-alpha";
+var eX_version = "5.0.2.3-alpha";
 
 var eX_scrsav_tmr;
 var eX_scrsav_move_tmr;
 var eX_scrSavTime = 60000;
 
 var eX_sysAudioContext;
-var eX_sysAudioAnalyser;
-var eX_sysAudioAnalyser2;
 var eX_sysAudioGain;

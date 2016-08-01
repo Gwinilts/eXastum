@@ -1,22 +1,35 @@
 function eX_initAudioSystem() {
     eX_sysAudioContext   = new AudioContext();
-    eX_sysAudioAnalyser  = eX_sysAudioContext.createAnalyser();
-    eX_sysAudioAnalyser2 = eX_sysAudioContext.createAnalyser();
     eX_sysAudioGain      = eX_sysAudioContext.createGain();
-    eX_sysAudioGain.gain.value   = 0.5;
-    eX_sysAudioAnalyser.fftSize  = 128;
-    eX_sysAudioAnalyser2.fftSize = 128;
-    eX_sysAudioAnalyser.smoothingTimeConstant  = 0.3;
-    eX_sysAudioAnalyser2.smoothingTimeConstant = 0.9;
-    eX_sysAudioAnalyser.connect(eX_sysAudioGain);
-    eX_sysAudioAnalyser2.connect(eX_sysAudioGain);
+    eX_sysAudioGain.gain.value = 0.5;
     eX_sysAudioGain.connect(eX_sysAudioContext.destination);
 }
 
 function eX_addAudioSource(src) {
-    var audioSource = eX_sysAudioContext.createMediaElementSource(src);
-    audioSource.connect(eX_sysAudioAnalyser);
-    audioSource.connect(eX_sysAudioAnalyser2);
+    var audioSource    = eX_sysAudioContext.createMediaElementSource(src);
+    var audioAnalyser1 = eX_sysAudioContext.createAnalyser();
+    var audioAnalyser2 = eX_sysAudioContext.createAnalyser();
+    var audioGain      = eX_sysAudioContext.createGain();
+
+    audioSource.connect(audioAnalyser1);
+    audioSource.connect(audioAnalyser2);
+    audioAnalyser1.fftSize = 128;
+    audioAnalyser2.fftSize = 128;
+    audioAnalyser1.smoothingTimeConstant = 0.3;
+    audioAnalyser2.smoothingTimeConstant = 0.9;
+    audioAnalyser1.connect(audioGain);
+    audioAnalyser2.connect(audioGain);
+    audioGain.gain.value = 0.5;
+    audioGain.connect(eX_sysAudioGain);
+
+    var audioData = {
+        source:    audioSource,
+        gainNode:  audioGain,
+        analyser1: audioAnalyser1,
+        analyser2: audioAnalyser2
+    };
+
+    return audioData;
 }
 
 function eX_setSysVol(level) {
@@ -27,7 +40,7 @@ function eX_seek(src, x) {
     src.currentTime = x;
 }
 
-function eX_startAudioVisualization(element, width, height) {
+function eX_startAudioVisualization(element, width, height, audioAnalyser1, audioAnalyser2) {
     scene  = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(45, width / height, 1, 100);
 
@@ -56,13 +69,13 @@ function eX_startAudioVisualization(element, width, height) {
         scene.add(bars[2][i])
     }
     visualData = new Array(new Uint8Array(128), new Uint8Array(64), new Uint8Array(64));
-    eX_visualize();
+    eX_visualize(audioAnalyser1, audioAnalyser2);
 }
 
-function eX_visualize() {
-    eX_sysAudioAnalyser2.getByteTimeDomainData(visualData[2]);
-    eX_sysAudioAnalyser2.getByteFrequencyData(visualData[0]);
-    eX_sysAudioAnalyser.getByteFrequencyData(visualData[1]);
+function eX_visualize(audioAnalyser1, audioAnalyser2) {
+    audioAnalyser2.getByteTimeDomainData(visualData[2]);
+    audioAnalyser2.getByteFrequencyData(visualData[0]);
+    audioAnalyser1.getByteFrequencyData(visualData[1]);
     var data;
     for (var i = 0; i < 64; i++) {
         bars[2][i].position.y = ((visualData[2][i] - 128) / 5) + 10;
@@ -77,6 +90,6 @@ function eX_visualize() {
         if (bars[2][i].scale.y === 0)
             bars[2][i].scale.y = 0.1;
     }
-    setTimeout(requestAnimationFrame(eX_visualize));
+    setTimeout(requestAnimationFrame(function () {eX_visualize(audioAnalyser1, audioAnalyser2)}));
     renderer.render(scene, camera);
 }
