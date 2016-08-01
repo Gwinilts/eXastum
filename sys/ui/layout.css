@@ -947,24 +947,26 @@ aside {
 #mainMenu ul {
     top:        5px;
     left:       5px;
-    right:      120px;
+    right:      200px;
     bottom:     5px;
     overflow-Y: scroll;
     overflow-X: hidden;
     position:   absolute;
-    border-bottom-left: 50px;
 }
 
 #mainMenu li {
+    width:          100%;
     color:          #e3e3e3;
     display:        block;
     padding-top:    8px;
     padding-bottom: 8px;
+    font-size:      16px;
 }
 
 #mainMenu li:hover {
-    color: #000;
-    background-color: rgba(255, 255, 255, 0.3);
+    cursor:           pointer;
+    background-image: URL("skins/default/imgs/panel_bg.png");
+    background-size:  100% 100%;
 }
 
 #dock {

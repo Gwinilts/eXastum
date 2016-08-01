@@ -168,4 +168,3 @@ function eX_newTab(title) {
     $(newTab).setAttribute("class", "workTab");
     return newTab;
 }
-
