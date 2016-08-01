@@ -1,29 +1,40 @@
-var VERSION = "5.0.0.3-alpha";
-
-function eXastumInit() {
-    if (lStore("firstUse") !== "false")
-        runSetup();
-    $("buildNum").innerHTML = "eXastum Desktop<br/>Build " + VERSION;
-    clockLoop();
+function eX_startScrSav() {
+    clearTimeout(eX_scrsav_tmr);
+    $("screenSaver").style.display = "block";
+    eX_scrSavMove();
 }
 
-function mainMenu() {
+function eX_scrSavMove() {
+    var x = Math.floor(Math.random() * (window.innerWidth  - 300)) + "px";
+    var y = Math.floor(Math.random() * (window.innerHeight - 100)) + "px";
+    $("scrSavLogo").style.top  = y;
+    $("scrSavLogo").style.left = x;
+    eX_scrsav_move_tmr = setTimeout(eX_scrSavMove, 3000);
+}
+
+function eX_clearScrSav() {
+    $("screenSaver").style.display = "none";
+    clearTimeout(eX_scrsav_move_tmr);
+    eX_scrsav_tmr = setTimeout(eX_startScrSav, 5000);
+}
+
+function eX_mainMenu() {
     if ($("mainMenu").style.display == "block")
         $("mainMenu").style.display = "none";
     else
         $("mainMenu").style.display = "block";
 }
 
-function showDock() {
+function eX_showDock() {
     $("dock").style.bottom = "30px";
 }
 
-function runSetup() {
+function eX_runSetup() {
     $("overlay").style.display = "block";
     $("setup").style.display = "block";
 }
 
-function setupNext() {
+function eX_setupNext() {
     var steps = 5;
     $("setupProgress").value += 100 / steps;
     if ($("setupProgress").value == ((100 / steps) * 1)) {
@@ -41,24 +52,24 @@ function setupNext() {
         $("currentSetupStage").innerHTML = "<h1>Setup User Account</h1>";
     } else if ($("setupProgress").value == 100) {
         $("setupNextButton").innerText = "Finish";
-        lStore("firstUse", "false");
+        mg_lStore("firstUse", "false");
         $("setupNextButton").setAttribute("onclick", "location.reload()");
     }
 }
 
-function systemReset() {
-    lStore("firstUse", "del");
+function eX_systemReset() {
+    mg_lStore("firstUse", "del");
 }
 
 function eX_launchApp(appName) {
-    loadManifest("sys/apps/" + appName + "/manifest.json");
-    newWindow(300, 250, appName, "sys/apps/" + appName + "/index.html", "horizontal", true, true);
+    eX_loadManifest("sys/apps/" + appName + "/manifest.json");
+    eX_spawnWindow(300, 250, appName, "sys/apps/" + appName + "/index.html", "horizontal", true, true);
 }
 
-function loadManifest(appName) {
+function eX_loadManifest(appName) {
 }
 
-function clockLoop() {
-    $("clock").innerText = " | " + fDate() + " | " + fTime();
-    setTimeout(clockLoop, 500);
+function eX_clockLoop() {
+    $("clock").innerText = " | " + mg_fDate() + " | " + mg_fTime();
+    setTimeout(eX_clockLoop, 500);
 }

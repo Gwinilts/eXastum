@@ -4,15 +4,23 @@
     <title>eXastum</title>
     <script src="sys/libs/macgril.js"></script>
     <script src="sys/libs/eXastum.js"></script>
+    <script src="sys/libs/eX_globals.js"></script>
+    <script src="sys/libs/eX_init.js"></script>
+    <script src="sys/libs/eX_audio.js"></script>
+    <script src="sys/libs/eX_windowing.js"></script>
+
+    <script src="sys/libs/third_party/three.min.js"></script>
+
     <link rel="stylesheet" href="sys/ui/reset.css"></link>
     <link rel="stylesheet" href="sys/ui/layout.css"></link>
     <link rel="stylesheet" href="sys/ui/skins/default/skin.css"></link>
 </head>
-<body onload="eXastumInit()">
+<body onload="eX_init()">
     <header>
-        <img id="menuButton" src="sys/ui/skins/default/imgs/menuIcon.png" onclick="mainMenu()"/>
+        <img id="menuButton" src="sys/ui/skins/default/imgs/menuIcon.png" onclick="eX_mainMenu()"/>
         <div id="mainMenu">
             <ul>
+                <li onclick="eX_launchApp('audio_test')">Audio Test</li>
                 <li onclick="eX_launchApp('calculator')">Calculator</li>
                 <li onclick="eX_launchApp('ex_studio')">eXastum Studio</li>
                 <li onclick="eX_launchApp('text_editor')">Text Editor</li>
@@ -45,9 +53,9 @@
 
     </aside>
     -->
-    <footer onmouseover="showDock()">
+    <footer onmouseover="eX_showDock()">
         <span>&copy; Brian Millar 2016</span>
-        <button onclick="systemReset()">Reset</button>
+        <button onclick="eX_systemReset()">Reset</button>
     </footer>
     <div id="setup">
         <div id="setupBottom">
@@ -61,9 +69,13 @@
                 <input type="checkbox" onchange="if (this.checked) $('setupNextButton').disabled = false; else $('setupNextButton').disabled = true"/>
             </div>
             <progress disabled id="setupProgress" min="0" max="100" value="0"></progress>
-            <button disabled id="setupNextButton" onclick="setupNext()">Next</button>
+            <button disabled id="setupNextButton" onclick="eX_setupNext()">Next</button>
         </div>
     </div>
     <div id="overlay"></div>
+    <div id="macgril"></div>
+    <div id="screenSaver" onmousemove="eX_clearScrSav()">
+        <img id="scrSavLogo" src="sys/ui/skins/default/imgs/scnsaver.png" width="200"/>
+    </div>
 </body>
 </html>

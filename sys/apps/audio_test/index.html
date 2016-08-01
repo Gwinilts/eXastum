@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            eXastum Audio Test
+        </title>
+        <script>
+            function init() {
+            }
+
+            function loadAudio(x) {
+                $("test").src = x;
+                parent.eX_addAudioSource($("test"));
+                $("test").play();
+                parent.eX_startAudioVisualization(window.parent.$(frameID).contentWindow.document.getElementById("viz"), 200, 200);
+            }
+        </script>
+        <script src="../../libs/macgril.js"></script>
+    </head>
+    <body>
+        <button onclick="mg_fOpen(loadAudio, 'audio/*');">Open Track</button>
+        <audio id="test"></audio>
+        <div id="viz" style="width:200px; height:200px;"></div>
+        <div id="macgril"></div>
+    </body>
+</html>

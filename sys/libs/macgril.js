@@ -24,17 +24,20 @@
     OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-var mgID = 0;
+var mgID;
+var mgDate;
 
-function print(x) {
+function mg_init() {
+    mgID = 0;
+    mgDate = new Date();
+    $("macgril").style.display = "none";
+}
+
+function mg_print(x) {
     document.write(x);
 }
-function log(x) {
+function mg_log(x) {
     console.log(x);
-}
-
-function macgrilInit() {
-    $("macgril").style.display = "none";
 }
 
 /*
@@ -74,41 +77,39 @@ function $(name) {
     else return undefined;
 }
 
-function generate(x, y, z) {
+function mg_generate(x, y, z) {
     var el = document.createElement(x);
     var id;
-    if (z !== null && z!== undefined)
-        id = z;
-    else
-        id = "macgrilID" + (mgID++);
+    if (z !== null && z !== undefined) id = z;
+    else id = "macgrilID" + (mgID++);
     el.setAttribute("id", id);
     $(y).appendChild(el);
     return id;
 }
 
-function genURL(x) {
+function mg_genURL(x) {
     return URL.createObjectURL(x);
 }
 
-function elementIDToggle(id, element) {
+function mg_elementIDToggle(id, element) {
     if ($(id) !== null && $(id) !== undefined)
         $(id).removeAttribute("id");
     element.id = id;
 }
 
-function switchTabs(id1, id2) {
+function mg_switchTabs(id1, id2) {
     $(id1).style.display = "none";
     $(id2).style.display = "block";
 }
 
-function showHideIDs(idArray, x) {
+function mg_showHideIDs(idArray, x) {
     for (var i = 0; i < idArray.length; i++) {
         if (x === "show") $(idArray[i]).style.display = "block";
         else              $(idArray[i]).style.display = "none";
     }
 }
 
-function quickShake(element, passTwo) {
+function mg_quickShake(element, passTwo) {
     $(element).style.transition       = "0.1s transform";
     $(element).style.MozTransition    = "0.1s transform";
     $(element).style.WebkitTransition = "0.1s transform";
@@ -131,12 +132,12 @@ function quickShake(element, passTwo) {
                     $(element).style.WebkitTransform = "translateX(0px)";
                     $(element).style.msTransform     = "translateX(0px)";
                     clearTimeout(timer2);
-                    if(!passTwo) quickShake(element, true);
+                    if(!passTwo) mg_quickShake(element, true);
                 }, 100);
         }, 100);
 }
 
-function lStore(x, y) {
+function mg_lStore(x, y) {
     if (y === "del")
         window.localStorage.removeItem(x);
     else if (y !== null && y !== undefined)
@@ -145,18 +146,19 @@ function lStore(x, y) {
         return window.localStorage.getItem(x);
 }
 
-function fOpen(func, accept) {
-    if (($("fOpen") !== 0) && ($("fOpen") !== undefined))
-        $("macgril").removeChild($("fOpen"));
-    generate("input", "macgril", "fOpen");
-    $("fOpen").setAttribute("type", "file");
-    if ((accept !== null) && (accept !== undefined))
-        $("fOpen").setAttribute("accept", accept);
-    $("fOpen").click();
-    $("fOpen").addEventListener("change", function() {
-        if ($('fOpen').files[0] != undefined)
-            func(window.URL.createObjectURL($('fOpen').files[0]));
-    });
+//Needs cleanup
+function mg_fOpen(func, accept) {
+        if (($("fOpen") !== 0) && ($("fOpen") !== undefined))
+            $("macgril").removeChild($("fOpen"));
+        mg_generate("input", "macgril", "fOpen");
+        $("fOpen").setAttribute("type", "file");
+        if ((accept !== null) && (accept !== undefined))
+            $("fOpen").setAttribute("accept", accept);
+        $("fOpen").click();
+        $("fOpen").addEventListener("change", function () {
+            func(window.URL.createObjectURL($('fOpen').files[0]))
+            }
+        );
 }
 
 //This file contains eXastum-specific code that should be generalised ASAP
@@ -168,13 +170,13 @@ function clock() {
     setTimeout("clock()", 500);
 }*/
 
-function updateAnalogClock() {
-    var today = new Date();
+function mg_updateAnalogClock() {
+    mgDate = new Date();
     genCal(today, "miniCal");
     var hrs = today.getHours();
     var min = today.getMinutes();
-    if (hrs > 12) hrs -= 12;
-    if (hrs == 0) hrs = 12;
+    if (hrs > 12)  hrs -= 12;
+    if (hrs === 0) hrs = 12;
     min *= 6;
     hrs *= 30;
     if (min > 180) hrs += 15;
@@ -194,9 +196,7 @@ function updateAnalogClock() {
     $("secsHand").style.MSTransform     = "rotate(" + (today.getSeconds() * 6) + "deg)";
 }
 
-var mgDate = new Date();
-
-function fDate(natural) {
+function mg_fDate(natural) {
     mgDate    = new Date();
     var day   = mgDate.getDay();
     var date  = mgDate.getDate();
@@ -218,7 +218,7 @@ function fDate(natural) {
     }
 }
 
-function fTime(natural) {
+function mg_fTime(natural) {
     mgDate      = new Date();
     var hours   = mgDate.getHours();
     var minutes = mgDate.getMinutes();
@@ -234,9 +234,9 @@ function fTime(natural) {
     else return hours + ":" + minutes + ":" + seconds;
 }
 
-function genCal(dateObj,cal) {
+function mg_genCal(dateObj,cal) {
     var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    if (isLeapYear(dateObj.getFullYear()))
+    if (mg_isLeapYear(dateObj.getFullYear()))
         monthDays[1] = 29;
     var calStr = "";
     $(cal).innerHTML = calStr;
@@ -257,8 +257,7 @@ function genCal(dateObj,cal) {
     $(cal).innerHTML = calStr;
 }
 
-//May be incorrect, please revisit
-function isLeapYear(year) {
+function mg_isLeapYear(year) {
     if (year % 4 === 0) {
         if (year % 100 === 0 && year % 400 === 0)
             return true;
@@ -268,7 +267,7 @@ function isLeapYear(year) {
     return false;
 }
 
-function formatTime(s) {
+function mg_formatTime(s) {
     var timeModFloor = Math.floor(s % 60);
     var timeDiv      = s / 60;
 
@@ -296,46 +295,20 @@ function formatTime(s) {
 
 //eXastum Specific Code
 
-function clock() {
-    $("sysClock").innerHTML = "|&#160;&#160;" + fDate(true) + "&#160;&#160;|&#160;&#160;" + fTime(true) + "&#160;";
+function mg_clock() {
+    $("sysClock").innerHTML = "|&#160;&#160;" + mg_fDate(true) + "&#160;&#160;|&#160;&#160;" + mg_fTime(true) + "&#160;";
     if ($("timePanel").style.display === "block")
         updateAnalogClock();
     setTimeout("clock()", 500);
 }
 
-function updateAnalogClock() {
-    var today = new Date();
-    genCal(today, "miniCal");
-    var hrs = today.getHours();
-    var min = today.getMinutes();
-    if (hrs > 12)  hrs -= 12;
-    if (hrs === 0) hrs = 12;
-    min *= 6;
-    hrs *= 30;
-    if (min > 180) hrs += 15;
-    $("minsHand").style.Transform       = "rotate(" + min + "deg)";
-    $("minsHand").style.WebkitTransform = "rotate(" + min + "deg)";
-    $("minsHand").style.MozTransform    = "rotate(" + min + "deg)";
-    $("minsHand").style.MSTransform     = "rotate(" + min + "deg)";
-
-    $("hourHand").style.Transform       = "rotate(" + hrs + "deg)";
-    $("hourHand").style.WebkitTransform = "rotate(" + hrs + "deg)";
-    $("hourHand").style.MozTransform    = "rotate(" + hrs + "deg)";
-    $("hourHand").style.MSTransform     = "rotate(" + hrs + "deg)";
-
-    $("secsHand").style.Transform       = "rotate(" + (today.getSeconds() * 6) + "deg)";
-    $("secsHand").style.WebkitTransform = "rotate(" + (today.getSeconds() * 6) + "deg)";
-    $("secsHand").style.MozTransform    = "rotate(" + (today.getSeconds() * 6) + "deg)";
-    $("secsHand").style.MSTransform     = "rotate(" + (today.getSeconds() * 6) + "deg)";
-}
-
-function notify(notifier, msg, timeout) {
+function mg_notify(notifier, msg, timeout) {
     notifier.innerText     = msg;
     notifier.style.display = "block";
     setTimeout(function () {notifier.style.display = "none";}, timeout);
 }
 
-function onStrikeEnter(func, ev, prvnt) {
+function mg_onStrikeEnter(func, ev, prvnt) {
     if ((ev.which === 13) || (ev.keyCode === 13)) {
         if (prvnt)
             ev.preventDefault();
@@ -351,7 +324,7 @@ function onStrikeEnter(func, ev, prvnt) {
  * while the knob is turned.
  */
 
-function knobLogic(knob, ev, func) {
+function mg_knobLogic(knob, ev, func) {
     var startPos    = ev.clientY;
     var newPos      = startPos;
     var startingRot = knob.style.MozTransform;
@@ -363,7 +336,7 @@ function knobLogic(knob, ev, func) {
 
     document.onmousemove = function(ev) {
         var rotation = parseInt(startRot);
-        newPos       = rotation + parseInt(startPos - ev.clientY);
+        newPos = rotation + parseInt(startPos - ev.clientY);
         if (newPos > 120)  newPos = 120;
         if (newPos < -120) newPos = -120;
         //Add cross-browser support here
@@ -382,27 +355,26 @@ function knobLogic(knob, ev, func) {
 }
 
 //Check Behaviour
-function randNum(x, y) {
+function mg_randNum(x, y) {
     return (Math.random() * x).toFixed(y);
 }
 
-function consoleInit(console) {
+function mg_consoleInit(console) {
     $(console).setAttribute("onkeypress", "onStrikeEnter('runConsoleCommand($(\\'" + console + "\\').value, $(\\'" + console + "\\'))',event,true);");
     $(console).focus();
 }
 
-function consoleOut(msg,console) {
+function mg_consoleOut(msg,console) {
     $(console).value = msg + "\n";
 }
 
-function runConsoleCommand(cmd,console) {
+function mg_runConsoleCommand(cmd,console) {
     eval(cmd);
     console.value = console.value + "\n";
     console.focus();
 }
 
-//TODO
-function validateEmail(fieldId, validCol, invalidCol) {
+function mg_validateEmail(fieldId, validCol, invalidCol) {
     var patt = new RegExp("(.*)(\@)(.*)[.][a-z]{2,3}$");
 
     if (patt.test($(fieldId).value)) {
@@ -414,7 +386,7 @@ function validateEmail(fieldId, validCol, invalidCol) {
     }
 }
 
-function validateCreditCard(fieldId, validCol, invalidCol) {
+function mg_validateCreditCard(fieldId, validCol, invalidCol) {
     var patt = new RegExp("^\\d{4}[-]\\d{4}[-]\\d{4}[-]\\d{4}$");
 
     var p1 = new RegExp("^\\d{4}$");
@@ -431,242 +403,4 @@ function validateCreditCard(fieldId, validCol, invalidCol) {
         $(fieldId).style.color = invalidCol;
         return false;
     }
-}
-
-function initAudioSystem() {
-    sysAudioContext   = new AudioContext();
-    sysAudioAnalyser  = sysAudioContext.createAnalyser();
-    sysAudioAnalyser2 = sysAudioContext.createAnalyser();
-    sysAudioGain      = sysAudioContext.createGain();
-    sysAudioGain.gain.value   = 0.5;
-    sysAudioAnalyser.fftSize  = 128;
-    sysAudioAnalyser2.fftSize = 128;
-    sysAudioAnalyser.smoothingTimeConstant  = 0.3;
-    sysAudioAnalyser2.smoothingTimeConstant = 0.9;
-    sysAudioAnalyser.connect(sysAudioGain);
-    sysAudioAnalyser2.connect(sysAudioGain);
-    sysAudioGain.connect(sysAudioContext.destination);
-}
-
-function addAudioSource(src) {
-    var audioSource = sysAudioContext.createMediaElementSource(src);
-    audioSource.connect(sysAudioAnalyser);
-    audioSource.connect(sysAudioAnalyser2);
-}
-
-function setSysVol(level) {
-    sysAudioGain.gain.value = (level + 120) * 0.004166667;
-}
-
-function seek(src, x) {
-    src.currentTime = x;
-}
-
-function startAudioVisualization(element, width, height) {
-    scene  = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(45, width / height, 1, 100);
-
-    camera.position.set(0, 0, 50);
-    camera.lookAt(scene.position);
-    scene.add(camera);
-
-    renderer = new THREE.WebGLRenderer({alpha:true, antialias:true});
-
-    renderer.setSize(width, height);
-    $(element).appendChild(renderer.domElement);
-
-    bars = new Array(new Array(40), new Array(40), new Array(40));
-
-    var j = -50.0;
-    for (var i = 0; i < 64; i++) {
-        bars[2][i] = new THREE.Mesh(new THREE.PlaneBufferGeometry(0.2, 0.5), new THREE.MeshBasicMaterial({color:0x9F42C2})); //Wave
-        bars[1][i] = new THREE.Mesh(new THREE.PlaneBufferGeometry(0.2, 0.5), new THREE.MeshBasicMaterial({color:0x55B25B})); //Bars
-        bars[0][i] = new THREE.Mesh(new THREE.PlaneBufferGeometry(0.2, 0.5), new THREE.MeshBasicMaterial({color:0xFF7446})); //Tips
-        bars[2][i].position.set(j, 10, 0);
-        bars[1][i].position.set(j, -20.5, 0);
-        bars[0][i].position.set(j, -20.5, 0);
-        j += (0.7 * 2);
-        scene.add(bars[1][i]);
-        scene.add(bars[0][i]);
-        scene.add(bars[2][i])
-    }
-    visualData = new Array(new Uint8Array(128), new Uint8Array(64), new Uint8Array(64));
-    visualize();
-}
-
-function visualize() {
-    sysAudioAnalyser2.getByteTimeDomainData(visualData[2]);
-    sysAudioAnalyser2.getByteFrequencyData(visualData[0]);
-    sysAudioAnalyser.getByteFrequencyData(visualData[1]);
-    var data;
-    for (var i = 0; i < 64; i++) {
-        bars[2][i].position.y = ((visualData[2][i] - 128) / 5) + 10;
-        data = (visualData[1][i] / 8);
-        bars[1][i].position.y = (data / 4) - 20.5;
-        bars[1][i].scale.y = data;
-        bars[0][i].position.y = ((visualData[0][i] / 8) / 2) - 20.5;
-        if (bars[0][i].scale.y === 0)
-            bars[0][i].scale.y = 0.1;
-        if (bars[1][i].scale.y === 0)
-            bars[1][i].scale.y = 0.1;
-        if (bars[2][i].scale.y === 0)
-            bars[2][i].scale.y = 0.1;
-    }
-    setTimeout(requestAnimationFrame(visualize));
-    renderer.render(scene, camera);
-}
-
-function newWindow(x, y, title, content, resize, min, max) {
-    if((max === null) || (max === undefined)) max = true;
-    if((min === null) || (min === undefined)) min = true;
-    var newWindow = generate("div", "windowSystem");
-    var titleBar  = generate("span", newWindow);
-    var actionButtons = generate("div", newWindow);
-    var windowTab = newTab(title);
-    $(actionButtons).setAttribute("class", "actionButtons");
-    $(newWindow).setAttribute("class", "window");
-    $(newWindow).style.minWidth  = parseInt(x) + 2  + "px";
-    $(newWindow).style.minHeight = parseInt(y) + 32 + "px";
-    $(newWindow).style.resize    = resize;
-    $(newWindow).style.left      = randNum(600, 0) + "px";
-    $(newWindow).style.top       = (parseInt(randNum(200, 0)) + 25) + "px";
-    $(newWindow).style.display   = "block";
-    $(titleBar).style.width      = $(newWindow).style.width;
-    if(content !== null) {
-        var appContent = generate("iframe", newWindow);
-        $(appContent).setAttribute("src", content);
-        $(appContent).setAttribute("class", "app");
-        //Sets up the application environment variables
-        $(appContent).addEventListener("load", function () {
-                var eX_exit = "function eX_exit() {window.parent.$(tabID).remove(); window.parent.$(windowID).remove();}";
-                var script = $(this.id).contentWindow.document.createElement('script');
-                script.innerText = "windowID = '"   + newWindow  +
-                                   "'; frameID = '" + appContent +
-                                   "'; tabID = '"   + windowTab  +
-                                   "'; init(); " + eX_exit;
-                $(this.id).contentWindow.document.head.appendChild(script);
-        });
-    }
-    var minString = "";
-    var maxString = "";
-    if(min)
-        minString = "<button class=\"minButton\" onclick=\"minMaxWindow('" + newWindow + "','" + windowTab + "')\">&#818;</button>";
-
-    if(max)
-        maxString = "<button class=\"maxButton\" onclick=\"maxRestoreWindow('" + newWindow + "','" + windowTab + "')\">&#9633;</button>";
-
-    $(actionButtons).innerHTML = "<button class=\"closeButton\" onclick=\"destroyWindow('" + newWindow + "','" + windowTab + "')\">&#9747;</button>" + maxString + minString;
-    $(titleBar).innerHTML = "<span class='titleBarText'>" + title + "</span>";
-    $(titleBar).setAttribute("class", "titleBar");
-    $(titleBar).setAttribute("onmousedown", "dragWindow('" + newWindow + "', event);");
-    $(windowTab).setAttribute("onclick", "minMaxWindow('" + newWindow + "','" + windowTab + "')");
-
-    return newWindow;
-}
-
-function destroyWindow(winID, tabID) {
-    $(tabID).remove();
-    $(winID).remove();
-}
-
-function minMaxWindow(winID, tabID) {
-    if ($(winID).style.display === "block") {
-        $(winID).style.display =  "none";
-        $(tabID).style.backgroundImage = "URL('sys/skins/" + lStore("skin") + "/ui/backing_up.png')";
-        document.onmousemove = function() {return false};
-    }
-    else {
-        $(winID).style.display = "block";
-        $(tabID).style.backgroundImage = "URL('sys/skins/" + lStore("skin") + "/ui/backing_down.png')";
-    }
-}
-
-function maxWindow(winID) {
-    saveWindowState(winID);
-    $(winID).style.top    =  "22px";
-    $(winID).style.left   =  "0px";
-    $(winID).style.width  =  "100%";
-    $(winID).style.height =  "calc(100% - 44px)";
-}
-
-function restoreWindow(winID) {
-    $(winID).style.width  = lStore(winID + "Width");
-    $(winID).style.height = lStore(winID + "Height");
-    $(winID).style.top    = lStore(winID + "Top");
-    $(winID).style.left   = lStore(winID + "Left");
-    lStore(winID + "Width",  "del");
-    lStore(winID + "Height", "del");
-    lStore(winID + "Left",   "del");
-    lStore(winID + "Top",    "del");
-}
-
-function maxRestoreWindow(winID) {
-    if(lStore(winID + "Width") !== null && lStore(winID + "Width") !== undefined)
-        restoreWindow(winID);
-    else
-        maxWindow(winID);
-}
-
-function saveWindowState(winID) {
-    lStore(winID + "Width",  $(winID).style.width);
-    lStore(winID + "Height", $(winID).style.height);
-    lStore(winID + "Left",   $(winID).style.left);
-    lStore(winID + "Top",    $(winID).style.top);
-}
-
-function dragWindow(appWindow, ev) {
-    positionLeft = parseInt($(appWindow).style.left);
-    positionTop  = parseInt($(appWindow).style.top);
-    xcoor        = ev.clientX;
-    ycoor        = ev.clientY;
-    var overlay  = generate("div", appWindow);
-    $(overlay).setAttribute("class", "windowOverlay");
-
-    window.onmousemove = function(ev) {
-        if($(appWindow) === undefined)
-            return false;
-
-        var leftdist = (positionLeft + ev.clientX) - xcoor;
-        var topdist  = (positionTop  + ev.clientY) - ycoor;
-
-        var sysWidth  = window.innerWidth;
-        var sysHeight = window.innerHeight;
-
-        var appWidth  = $(appWindow).scrollWidth;
-        var appHeight = $(appWindow).scrollHeight;
-
-        if(topdist < 32)
-            topdist = "22";
-        else if (topdist > (sysHeight - (appHeight + 32)))
-            topdist = sysHeight - (appHeight + 22);
-
-        if(leftdist < 10)
-            leftdist = "0";
-        else if (leftdist > (sysWidth - (appWidth + 10)))
-            leftdist = sysWidth - appWidth;
-
-
-        $(appWindow).style.opacity = 0.7;
-        $(appWindow).style.top     = topdist  + "px";
-        $(appWindow).style.left    = leftdist + "px";
-
-        window.onmouseup = function(ev) {
-            $(overlay).remove();
-            $(appWindow).style.opacity = 1.0;
-            window.onmousemove         = function() {return false};
-            window.onmouseup           = function() {return false};
-            leftdist                   = null;
-            topdist                    = null;
-            xcoor                      = null;
-            ycoor                      = null;
-            return false;
-        }
-    }
-}
-
-function newTab(title) {
-    var newTab          = generate("span", "sysTasks");
-    $(newTab).innerHTML = title;
-    $(newTab).setAttribute("class", "workTab");
-    return newTab;
 }

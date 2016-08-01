@@ -10,12 +10,12 @@
 
 body {
     color: #e3e3e3;
-    font-family: regularRaleway, lighterRaleway, sans-serif !important;
+    font-family: liberation-sans, sans-serif !important;
 }
 
 a {
     color:           #e3e3e3;
-    font-family:     lighterRaleway;
+    font-family:     liberation-sans;
     text-decoration: none;
 }
 
@@ -37,7 +37,7 @@ button {
 }
 
 textarea {
-    font:             regularRaleway;
+    font:             liberation-sans;
     font-size:        12px;
     padding:          10px;
     border:           none;
@@ -136,29 +136,3 @@ progress {
     background-size:  100% 100%;
 }
 
-.iconText {
-    fill: #e3e3e3;
-    font-family: lighterRaleway;
-    font-weight: lighter;
-}
-
-.iconCircleStroked {
-    stroke-width: 4;
-    stroke: #e3e3e3;
-    fill:   none;
-}
-
-.iconCircleFilled {
-    stroke: none;
-    fill:   #e3e3e3;
-}
-
-.iconPolyFilled {
-    stroke: none;
-    fill:   #e3e3e3;
-}
-
-.iconRectFilled {
-    stroke: none;
-    fill:   #e3e3e3;
-}
