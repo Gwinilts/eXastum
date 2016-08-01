@@ -4,11 +4,11 @@
         <title>Calculator</title>
         <script>
             function addDigit(x) {
-                document.getElementById("calcArea").value = document.getElementById("calcArea").value + x;
+                $("calcArea").value = document.getElementById("calcArea").value + x;
             }
 
             function finalCalc() {
-                document.getElementById("calcArea").value = eval(document.getElementById("calcArea").value);
+                $("calcArea").value = eval(document.getElementById("calcArea").value);
             }
         </script>
         <style>

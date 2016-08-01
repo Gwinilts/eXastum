@@ -87,6 +87,7 @@ button.minButton {
     box-shadow:       none;
     border:           none;
     border-radius:    0px;
+    background-color: transparent;
 }
 
 button.maxButton {
@@ -96,6 +97,7 @@ button.maxButton {
     box-shadow:       none;
     border:           none;
     border-radius:    0px;
+    background-color: transparent;
 }
 
 button.closeButton {
@@ -196,6 +198,8 @@ div.window {
     border-style:               solid;
     border-width:               1px;
     border-color:               #000;
+    border-top-left-radius:     8px;
+    border-top-right-radius:    8px;
 
     animation:         window 0.4s;
     -ms-animation:     window 0.4s;
@@ -880,6 +884,12 @@ footer {
     background-size:  100% 100%;
     box-shadow:       0px 0px 4px #000;
     z-index:          3;
+}
+
+button {
+    border-radius:    8px;
+    background-image: URL("skins/default/imgs/panel_bg.png");
+    background-size:  100% 100%;
 }
 
 #desktop {

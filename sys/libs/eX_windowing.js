@@ -21,12 +21,28 @@ function eX_spawnWindow(x, y, title, content, resize, min, max) {
         //Sets up the application environment variables
         $(appContent).addEventListener("load", function () {
                 var eX_exit = "function eX_exit() {window.parent.$(tabID).remove(); window.parent.$(windowID).remove();}";
-                var script = $(this.id).contentWindow.document.createElement('script');
-                script.innerText = "windowID = '"   + newWindow  +
-                                   "'; frameID = '" + appContent +
-                                   "'; tabID = '"   + windowTab  +
-                                   "'; init(); " + eX_exit;
-                $(this.id).contentWindow.document.head.appendChild(script);
+                var mg_elm  = $(this.id).contentWindow.document.createElement("div");
+                var style1  = $(this.id).contentWindow.document.createElement("link");
+                var style2  = $(this.id).contentWindow.document.createElement("link");
+                var script1 = $(this.id).contentWindow.document.createElement("script");
+                var script2 = $(this.id).contentWindow.document.createElement("script");
+                script1.innerText = "windowID = '"   + newWindow  +
+                                    "'; frameID = '" + appContent +
+                                    "'; tabID = '"   + windowTab  +
+                                    "'; mg_init(); init();" + eX_exit;
+                script2.setAttribute("src", "../../libs/macgril.js");
+                style1.setAttribute("rel", "stylesheet");
+                style2.setAttribute("rel", "stylesheet");
+                style1.setAttribute("type", "text/css");
+                style2.setAttribute("type", "text/css");
+                style1.setAttribute("href", "../../ui/reset.css");
+                style2.setAttribute("href", "../../ui/layout.css");
+                mg_elm.setAttribute("id", "macgril");
+                $(this.id).contentWindow.document.body.appendChild(mg_elm);
+                $(this.id).contentWindow.document.head.appendChild(style1);
+                $(this.id).contentWindow.document.head.appendChild(style2);
+                $(this.id).contentWindow.document.head.appendChild(script1);
+                $(this.id).contentWindow.document.head.appendChild(script2);
         });
     }
     var minString = "";

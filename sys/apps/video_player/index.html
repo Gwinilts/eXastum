@@ -47,28 +47,28 @@
         </style>
         <script>
             function init() {
-                document.getElementById("eXVideo").addEventListener("play", function () {
-                    document.getElementById("ppButton").innerText = "Pause";
+                $("eXVideo").addEventListener("play", function () {
+                    $("ppButton").innerText = "Pause";
                 });
 
-                document.getElementById("eXVideo").addEventListener("pause", function () {
-                    document.getElementById("ppButton").innerText = "Play";
+                $("eXVideo").addEventListener("pause", function () {
+                    $("ppButton").innerText = "Play";
                 });
 
-                document.getElementById("eXVideo").addEventListener("mouseover", function () {
-                    document.getElementById("baseControls").style.display = "block";
+                $("eXVideo").addEventListener("mouseover", function () {
+                    $("baseControls").style.display = "block";
                 });
 
-                document.getElementById("eXVideo").addEventListener("mouseout", function () {
-                    document.getElementById("baseControls").style.display = "none";
+                $("eXVideo").addEventListener("mouseout", function () {
+                    $("baseControls").style.display = "none";
                 });
 
-                document.getElementById("baseControls").addEventListener("mouseover", function () {
-                    document.getElementById("baseControls").style.display = "block";
+                $("baseControls").addEventListener("mouseover", function () {
+                    $("baseControls").style.display = "block";
                 });
 
-                document.getElementById("baseControls").addEventListener("mouseout", function () {
-                    document.getElementById("baseControls").style.display = "none";
+                $("baseControls").addEventListener("mouseout", function () {
+                    $("baseControls").style.display = "none";
                 });
 
                 $("eXVideo").addEventListener("canplay", function () {
@@ -78,21 +78,19 @@
             }
 
             function playPause() {
-                if (document.getElementById("eXVideo").paused)
-                    document.getElementById("eXVideo").play();
+                if ($("eXVideo").paused)
+                    $("eXVideo").play();
                 else
-                    document.getElementById("eXVideo").pause();
+                    $("eXVideo").pause();
             }
         </script>
-        <script src="../../libs/macgril.js"></script>
     </head>
     <body>
         <video id="eXVideo" src="test.mp4" poster="imgs/poster.jpg" width="100%" height="100%"></video>
         <div id="baseControls">
             <button id="ppButton" onclick="playPause()">Play</button>
-            <button onclick="fOpen(function (file) {$('eXVideo').src = file; $('eXVideo').play();}, 'video/*');">Open</button>
+            <button onclick="mg_fOpen(function (file) {$('eXVideo').src = file; $('eXVideo').play();}, 'video/*');">Open</button>
             <button onclick="eX_exit()">Quit</button>
-            <div id="macgril"></div>
         </div>
     </body>
 </html>

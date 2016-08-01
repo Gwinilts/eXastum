@@ -77,3 +77,7 @@ function eX_clockLoop() {
     $("clock").innerText = " | " + mg_fDate() + " | " + mg_fTime();
     setTimeout(eX_clockLoop, 500);
 }
+
+function eX_installApp() {
+    mg_lStore("eX_installed", mg_lStore("eX_installed") + "$" + prompt("Enter Application Folder Name"));
+}
