@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            eXastum Image Test
+        </title>
+        <script>
+            function init() {
+            }
+
+            function loadImage(x) {
+                $("test").src = x;
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="mg_fOpen(loadImage, 'image/*');">Open Image</button>
+        <img id="test" width="100%"/>
+    </body>
+</html>

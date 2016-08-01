@@ -29,7 +29,7 @@ function eX_spawnWindow(x, y, title, content, resize, min, max) {
                 script1.innerText = "windowID = '"   + newWindow  +
                                     "'; frameID = '" + appContent +
                                     "'; tabID = '"   + windowTab  +
-                                    "'; mg_init(); init();" + eX_exit;
+                                    "'; "            + eX_exit;
                 script2.setAttribute("src", "../../libs/macgril.js");
                 style1.setAttribute("rel", "stylesheet");
                 style2.setAttribute("rel", "stylesheet");
@@ -43,6 +43,7 @@ function eX_spawnWindow(x, y, title, content, resize, min, max) {
                 $(this.id).contentWindow.document.head.appendChild(style2);
                 $(this.id).contentWindow.document.head.appendChild(script1);
                 $(this.id).contentWindow.document.head.appendChild(script2);
+                $(this.id).contentWindow.document.body.setAttribute("onload", "mg_init(); init();");
         });
     }
     var minString = "";
