@@ -24,14 +24,10 @@
     OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-var mgID;
-var mgDate;
-
-function mg_init() {
-    mgID = 0;
-    mgDate = new Date();
-    $("macgril").style.display = "none";
-}
+//init
+var mgID = 0;
+var mgDate = new Date();
+$("macgril").style.display = "none";
 
 function mg_print(x) {
     document.write(x);

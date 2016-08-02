@@ -42,8 +42,7 @@ function eX_spawnWindow(x, y, title, content, resize, min, max) {
                 $(this.id).contentWindow.document.head.appendChild(style1);
                 $(this.id).contentWindow.document.head.appendChild(style2);
                 $(this.id).contentWindow.document.head.appendChild(script1);
-                $(this.id).contentWindow.document.head.appendChild(script2);
-                $(this.id).contentWindow.document.body.setAttribute("onload", "mg_init(); init();");
+                $(this.id).contentWindow.document.getElementById("macgril").appendChild(script2);
         });
     }
     var minString = "";
