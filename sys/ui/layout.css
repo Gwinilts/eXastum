@@ -568,10 +568,28 @@ h1.menuTitle {
     color:      #838383;
 }
 
+#miniLauncher {
+    position: fixed;
+    top:      1px;
+    left:     50px;
+}
+
+#miniLauncher img {
+    opacity: 0.8;
+    width:   19px;
+    height:  19px;
+    margin-left: 3px;
+}
+
+#miniLauncher img:hover {
+    opacity: 1.0;
+    cursor:  pointer;
+}
+
 #sysTasks {
     position: fixed;
     top:      2px;
-    left:     106px;
+    left:     128px;
     right:    200px;
     overflow: hidden;
 }
