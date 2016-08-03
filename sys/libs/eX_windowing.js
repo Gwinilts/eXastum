@@ -18,7 +18,6 @@ function eX_spawnWindow(x, y, title, content, resize, min, max) {
         var appContent = mg_generate("iframe", newWindow);
         $(appContent).setAttribute("src", content);
         $(appContent).setAttribute("class", "app");
-        //Sets up the application environment variables
         $(appContent).addEventListener("load", function () {
                 var appDoc  = $(this.id).contentWindow.document;
                 var eX_exit = "function eX_exit() {window.parent.$(tabID).remove(); window.parent.$(windowID).remove();}";
@@ -88,10 +87,10 @@ function eX_minMaxWindow(winID, tabID) {
 
 function eX_maxWindow(winID) {
     eX_saveWindowState(winID);
-    $(winID).style.top    =  "22px";
-    $(winID).style.left   =  "0px";
-    $(winID).style.width  =  "100%";
-    $(winID).style.height =  "calc(100% - 44px)";
+    $(winID).style.top    = "22px";
+    $(winID).style.left   = "0px";
+    $(winID).style.width  = "100%";
+    $(winID).style.height = "calc(100% - 44px)";
 }
 
 function eX_restoreWindow(winID) {
@@ -106,10 +105,9 @@ function eX_restoreWindow(winID) {
 }
 
 function eX_maxRestoreWindow(winID) {
-    if(mg_lStore(winID + "Width") !== null && mg_lStore(winID + "Width") !== undefined)
+    if (mg_lStore(winID + "Width") !== null && mg_lStore(winID + "Width") !== undefined)
         eX_restoreWindow(winID);
-    else
-        eX_maxWindow(winID);
+    else eX_maxWindow(winID);
 }
 
 function eX_saveWindowState(winID) {
