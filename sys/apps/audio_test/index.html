@@ -24,13 +24,13 @@
         </style>
         <script>
             function init() {
+                var audioData = parent.eX_addAudioSource($("test"));
+                parent.eX_startAudioVisualization(window.parent.$(frameID).contentWindow.document.getElementById("viz"), 200, 200, audioData.analyser1, audioData.analyser2);
             }
 
             function loadAudio(x) {
                 $("test").src = x;
-                var audioData = parent.eX_addAudioSource($("test"));
                 $("test").play();
-                parent.eX_startAudioVisualization(window.parent.$(frameID).contentWindow.document.getElementById("viz"), 200, 200, audioData.analyser1, audioData.analyser2);
             }
         </script>
     </head>
