@@ -1,4 +1,1 @@
-resizing windows not working (tested in Firefox)
-
-maximizing broken after reloading with window open as lStore not cleared for
-window state information.
+ - Maximizing broken after reloading with window open as lStore not cleared for window state information.
