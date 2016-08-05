@@ -5,11 +5,15 @@ function eX_spawnWindow(x, y, title, content, resize, min, max) {
     var titleBar  = mg_generate("span", newWindow);
     var actionButtons = mg_generate("div", newWindow);
     var windowTab = eX_newTab(title);
+    if (resize) {
+        var resizeHandle = mg_generate("span", newWindow);
+        $(resizeHandle).setAttribute("class", "rhandle");
+        $(resizeHandle).addEventListener("mousedown", function (event) {eX_resizeWindow(newWindow, event);})
+    }
     $(actionButtons).setAttribute("class", "actionButtons");
     $(newWindow).setAttribute("class", "window");
     $(newWindow).style.minWidth  = parseInt(x) + 2  + "px";
     $(newWindow).style.minHeight = parseInt(y) + 32 + "px";
-    $(newWindow).style.resize    = resize;
     $(newWindow).style.left      = mg_randNum(600, 0) + "px";
     $(newWindow).style.top       = (parseInt(mg_randNum(200, 0)) + 25) + "px";
     $(newWindow).style.display   = "block";
@@ -162,6 +166,35 @@ function eX_dragWindow(appWindow, ev) {
             topdist                    = null;
             xcoor                      = null;
             ycoor                      = null;
+            return false;
+        }
+    }
+}
+
+function eX_resizeWindow(win, ev) {
+    var startWidth  = $(win).scrollWidth;
+    var startHeight = $(win).scrollHeight;
+    xcoor = ev.clientX;
+    ycoor = ev.clientY;
+
+    var overlay  = mg_generate("div", win);
+    $(overlay).setAttribute("class", "windowOverlay");
+
+    window.onmousemove = function(ev) {
+        if($(win) === undefined)
+            return false;
+
+        $(win).style.opacity = 0.7;
+        $(win).style.width  = startWidth  + (ev.clientX - xcoor) + "px";
+        $(win).style.height = startHeight + (ev.clientY - ycoor) + "px";
+
+        window.onmouseup = function(ev) {
+            $(overlay).remove();
+            $(win).style.opacity = 1.0;
+            xcoor                      = null;
+            ycoor                      = null;
+            window.onmousemove         = function() {return false};
+            window.onmouseup           = function() {return false};
             return false;
         }
     }
