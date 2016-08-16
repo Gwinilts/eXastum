@@ -1,6 +1,8 @@
 eXastum
 =======
 
+eXastum now has its own subreddit /r/eXastum!
+
 ***THIS IS A DEVELOPMENT REPO***
 
 ***DO NOT REPORT MISSING FUNCTIONALITY / KNOWN BUGS***
