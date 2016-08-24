@@ -72,8 +72,8 @@
                 });
 
                 $("eXVideo").addEventListener("canplay", function () {
-                    window.parent.$(windowID).style.width  = $("eXVideo").videoWidth + "px";
-                    window.parent.$(windowID).style.height = ($("eXVideo").videoHeight + 27) + "px";
+                    window.parent.$(windowID).style.width  = ($("eXVideo").videoWidth / 2) + "px";
+                    window.parent.$(windowID).style.height = (($("eXVideo").videoHeight / 2) + 27) + "px";
                 });
             }
 

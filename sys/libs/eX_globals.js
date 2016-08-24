@@ -1,4 +1,4 @@
-var eX_version = "5.0.2.8-alpha";
+var eX_version = "5.0.2.8.5-alpha";
 
 var eX_scrsav_tmr;
 var eX_scrsav_move_tmr;

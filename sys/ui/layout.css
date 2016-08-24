@@ -806,6 +806,11 @@ h1.menuTitle {
     overflow-y: scroll;
 }
 
+#appMenuDesc {
+    float: right;
+    width: 100px;
+}
+
 #wallpaper {
     z-index:  -1;
     position: fixed;
