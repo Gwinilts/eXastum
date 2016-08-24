@@ -801,6 +801,11 @@ h1.menuTitle {
     display: none;
 }
 
+#setupSysAppList {
+    height: 140px;
+    overflow-y: scroll;
+}
+
 #wallpaper {
     z-index:  -1;
     position: fixed;
