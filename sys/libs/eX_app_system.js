@@ -1,6 +1,6 @@
 function eX_launchApp(appName) {
     var apps = JSON.parse(mg_lStore("eX_apps"));
-    eX_spawnWindow(apps[appName].win_width, apps[appName].win_height, apps[appName].name, apps[appName].url, apps[appName].win_resize, apps[appName].win_min, apps[appName].win_max);
+    eX_spawnWindow(apps[appName].win_width, apps[appName].win_height, apps[appName].name, apps[appName].url, apps[appName].icon_url, apps[appName].win_resize, apps[appName].win_min, apps[appName].win_max, apps[appName].use_sys_skin);
 }
 
 function eX_installApp(manifest) {

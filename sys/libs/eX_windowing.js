@@ -1,4 +1,4 @@
-function eX_spawnWindow(x, y, title, content, resize, min, max) {
+function eX_spawnWindow(x, y, title, content, icon, resize, min, max, use_sys_skin) {
     if((max === null) || (max === undefined)) max = true;
     if((min === null) || (min === undefined)) min = true;
     var newWindow = mg_generate("div", "windowSystem");
@@ -31,23 +31,25 @@ function eX_spawnWindow(x, y, title, content, resize, min, max) {
                 var script1 = appDoc.createElement("script");
                 var script2 = appDoc.createElement("script");
                 var script3 = appDoc.createElement("script");
-                script1.innerText = "windowID = '"   + newWindow  +
-                                    "'; frameID = '" + appContent +
-                                    "'; tabID = '"   + windowTab  +
+                script1.innerText = "var windowID = '"   + newWindow  +
+                                    "'; var frameID = '" + appContent +
+                                    "'; var tabID = '"   + windowTab  +
                                     "'; "            + eX_exit;
                 script2.setAttribute("src", "../../libs/macgril.js");
                 script2.setAttribute("id", "mg_lib");
                 script3.innerText = "init()";
-                style1.setAttribute("rel", "stylesheet");
-                style2.setAttribute("rel", "stylesheet");
-                style1.setAttribute("type", "text/css");
-                style2.setAttribute("type", "text/css");
-                style1.setAttribute("href", "../../ui/reset.css");
-                style2.setAttribute("href", "../../ui/layout.css");
+                if (use_sys_skin) {
+                    style1.setAttribute("rel", "stylesheet");
+                    style2.setAttribute("rel", "stylesheet");
+                    style1.setAttribute("type", "text/css");
+                    style2.setAttribute("type", "text/css");
+                    style1.setAttribute("href", "../../ui/reset.css");
+                    style2.setAttribute("href", "../../ui/layout.css");
+                    appDoc.head.appendChild(style1);
+                    appDoc.head.appendChild(style2);
+                }
                 mg_elm.setAttribute("id", "macgril");
                 appDoc.body.appendChild(mg_elm);
-                appDoc.head.appendChild(style1);
-                appDoc.head.appendChild(style2);
                 appDoc.getElementById("macgril").appendChild(script2);
                 appDoc.getElementById("mg_lib").addEventListener("load", function () {
                     appDoc.head.appendChild(script1);
@@ -59,12 +61,11 @@ function eX_spawnWindow(x, y, title, content, resize, min, max) {
     var maxString = "";
     if(min)
         minString = "<button class=\"minButton\" onclick=\"eX_minMaxWindow('" + newWindow + "','" + windowTab + "')\">_</button>";
-
     if(max)
         maxString = "<button class=\"maxButton\" onclick=\"eX_maxRestoreWindow('" + newWindow + "','" + windowTab + "')\">&#9633;</button>";
 
     $(actionButtons).innerHTML = "<button class=\"closeButton\" onclick=\"eX_destroyWindow('" + newWindow + "','" + windowTab + "')\">&#9747;</button>" + maxString + minString;
-    $(titleBar).innerHTML = "<span class='titleBarText'>" + title + "</span>";
+    $(titleBar).innerHTML = "<span class='titleBarText'><img class='appTitleBarIcon' src='" + icon + "'/>" + title + "</span>";
     $(titleBar).setAttribute("class", "titleBar");
     $(titleBar).setAttribute("onmousedown", "eX_dragWindow('" + newWindow + "', event);");
     $(windowTab).setAttribute("onclick", "eX_minMaxWindow('" + newWindow + "','" + windowTab + "')");

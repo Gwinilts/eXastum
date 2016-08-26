@@ -111,15 +111,24 @@ button.closeButton {
 }
 
 span.titleBarText {
-    margin-top:  5px;
     float:       left;
     margin-left: 12px;
     font-size:   15px;
+    position:    relative;
+    top:         -2px;
 
     animation:         titleFade 1.0s;
     -webkit-animation: titleFade 1.0s;
     -moz-animation:    titleFade 1.0s;
     -ms-animation:     titleFade 1.0s;
+}
+
+img.appTitleBarIcon {
+    width:        20px;
+    height:       20px;
+    position:     relative;
+    top:          6px;
+    margin-right: 10px;
 }
 
 span.titleBar {
@@ -811,7 +820,7 @@ h1.menuTitle {
     margin-top:  10px;
     display:     block;
     width:       180px;
-    font-size:   16px;
+    font-size:   18px;
     text-shadow: 2px 2px 4px #000;
 }
 
