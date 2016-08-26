@@ -16,7 +16,12 @@
                 <span id="appsList">
                 </span>
             </ul>
-            <span id="appMenuDesc"></span>
+            <div id="appMenuDetails">
+                <img id="appMenuIcon"/>
+                <span id="appMenuName"></span>
+                <span id="appMenuDev"></span>
+                <span id="appMenuDesc"></span>
+            </div>
         </div>
         <div id="miniLauncher">
             <img onclick="eX_launchApp('terminal');" src="sys/ui/skins/default/imgs/terminal_mini.png"/>
@@ -55,7 +60,7 @@
     <div id="setup">
         <div id="setupBottom">
             <div id="currentSetupStage">
-                <h1>Welcome to eXastum 5</h1>
+                <h1 id="setupWelcome">Welcome to eXastum</h1>
                 <p>Thank you for downloading eXastum! The eXastum desktop has been rewritten from the ground up to provide a more stable, faster and more feature rich platform for running desktop class web applications.
                 <br/><br/>
                 Since it looks as if this is your first time running eXastum on this machine there are just a few steps to go through in order to set things up.

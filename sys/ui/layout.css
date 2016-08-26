@@ -806,9 +806,44 @@ h1.menuTitle {
     overflow-y: scroll;
 }
 
+#appMenuName {
+    margin-left: 10px;
+    margin-top:  10px;
+    display:     block;
+    width:       180px;
+    font-size:   16px;
+    text-shadow: 2px 2px 4px #000;
+}
+
+#appMenuDev {
+    margin-left: 10px;
+    margin-top:  10px;
+    display:     block;
+    width:       180px;
+    font-size:   14px;
+    text-shadow: 2px 2px 4px #000;
+}
+
 #appMenuDesc {
-    float: right;
-    width: 100px;
+    margin-left: 10px;
+    margin-top:  10px;
+    display:     block;
+    width:       180px;
+    font-size:   12px;
+    text-shadow: 2px 2px 4px #000;
+}
+
+#appMenuIcon {
+    margin-left: 40px;
+    margin-top:  10px;
+    width:       120px;
+    height:      120px;
+}
+
+#appMenuDetails {
+    float:  right;
+    width:  200px;
+    height: 100%;
 }
 
 #wallpaper {

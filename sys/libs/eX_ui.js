@@ -10,13 +10,16 @@ function eX_mainMenu() {
         var apps = JSON.parse(mg_lStore("eX_apps"));
         var app;
         for (app in apps)
-            list += "<li onmouseover=\"eX_menuShowAppDesc('" + apps[app].desc + "')\" onmouseout=\"eX_menuShowAppDesc('')\" onclick=\"eX_launchApp('" + app + "')\">" + apps[app].name + "</li>";
+            list += "<li onmouseover=\"eX_menuShowAppDetails('" + apps[app].name + "', '" + apps[app].developer + "', '" + apps[app].desc + "', '" + apps[app].icon_url + "')\" onmouseout=\"eX_menuShowAppDetails('eXastum 5', 'Brian Millar', 'The eXastum Web Desktop', 'sys/ui/skins/default/imgs/default_icon.png')\" onclick=\"eX_launchApp('" + app + "')\">" + apps[app].name + "</li>";
         $("appsList").innerHTML = list;
     }
 }
 
-function eX_menuShowAppDesc(desc) {
+function eX_menuShowAppDetails(appName, dev, desc, icon) {
+    $("appMenuName").innerText = appName;
+    $("appMenuDev").innerText = "Dev: " + dev;
     $("appMenuDesc").innerText = desc;
+    $("appMenuIcon").src = icon;
 }
 
 function eX_showDock() {

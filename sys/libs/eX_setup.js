@@ -2,6 +2,7 @@
 function eX_runSetup() {
     $("overlay").style.display = "block";
     $("setup").style.display = "block";
+    $("setupWelcome").innerText = "Welcome to eXastum " + eX_version;
 }
 
 function eX_setupNext() {
@@ -19,15 +20,15 @@ function eX_setupNext() {
             $("currentSetupStage").innerHTML += "<h3 style='color:green;'>Successfully Created Database</h3>";
         }
     } else if ($("setupProgress").value == ((100 / steps) * 2)) {
-        var browser      = {name: "Browser",       desc: "Browser Inception",                    url: "sys/apps/browser/index.html",      win_width: 800, win_height: 600, win_resize: true,  win_min: true,  win_max: true};
-        var calculator   = {name: "Calculator",    desc: "Perform basic calculations",           url: "sys/apps/calculator/index.html",   win_width: 300, win_height: 350, win_resize: false, win_min: true,  win_max: false};
-        var image_viewer = {name: "Image Viewer",  desc: "View Images",                          url: "sys/apps/image_viewer/index.html", win_width: 450, win_height: 400, win_resize: true,  win_min: true,  win_max: true};
-        var music        = {name: "eXastum Music", desc: "The eXastum Music Application",        url: "sys/apps/music/index.html",        win_width: 450, win_height: 350, win_resize: true,  win_min: true,  win_max: true};
-        var settings     = {name: "Settings",      desc: "eXastum System Settings",              url: "sys/apps/settings/index.html",     win_width: 450, win_height: 400, win_resize: false, win_min: true,  win_max: false};
-        var stopwatch    = {name: "Stopwatch",     desc: "Time stuff",                           url: "sys/apps/stopwatch/index.html",    win_width: 300, win_height: 250, win_resize: false, win_min: true, win_max: false};
-        var terminal     = {name: "Terminal",      desc: "The eXastum system terminal emulator", url: "sys/apps/terminal/index.html",     win_width: 450, win_height: 350, win_resize: true,  win_min: true,  win_max: true};
-        var text_editor  = {name: "Text Editor",   desc: "A simple Text Editor",                 url: "sys/apps/text_editor/index.html",  win_width: 450, win_height: 350, win_resize: true,  win_min: true,  win_max: true};
-        var video_player = {name: "Video Player",  desc: "Play Videos",                          url: "sys/apps/video_player/index.html", win_width: 450, win_height: 400, win_resize: true,  win_min: true,  win_max: true};
+        var browser      = {name: "Browser",       desc: "Browser Inception",                    developer: "Brian Millar", url: "sys/apps/browser/index.html",      win_width: 800, win_height: 600, win_resize: true,  win_min: true,  win_max: true,  use_sys_skin: true, icon_url: "sys/apps/browser/imgs/icon.png"};
+        var calculator   = {name: "Calculator",    desc: "Perform basic calculations",           developer: "Brian Millar", url: "sys/apps/calculator/index.html",   win_width: 300, win_height: 350, win_resize: false, win_min: true,  win_max: false, use_sys_skin: true, icon_url: "sys/apps/calculator/imgs/icon.png"};
+        var image_viewer = {name: "Image Viewer",  desc: "View Images",                          developer: "Brian Millar", url: "sys/apps/image_viewer/index.html", win_width: 450, win_height: 400, win_resize: true,  win_min: true,  win_max: true,  use_sys_skin: true, icon_url: "sys/apps/image_viewer/imgs/icon.png"};
+        var music        = {name: "eXastum Music", desc: "The eXastum Music Application",        developer: "Brian Millar", url: "sys/apps/music/index.html",        win_width: 450, win_height: 350, win_resize: true,  win_min: true,  win_max: true,  use_sys_skin: true, icon_url: "sys/apps/music/imgs/icon.png"};
+        var settings     = {name: "Settings",      desc: "eXastum System Settings",              developer: "Brian Millar", url: "sys/apps/settings/index.html",     win_width: 450, win_height: 400, win_resize: false, win_min: true,  win_max: false, use_sys_skin: true, icon_url: "sys/apps/settings/imgs/icon.png"};
+        var stopwatch    = {name: "Stopwatch",     desc: "Time stuff",                           developer: "Brian Millar", url: "sys/apps/stopwatch/index.html",    win_width: 300, win_height: 250, win_resize: false, win_min: true,  win_max: false, use_sys_skin: true, icon_url: "sys/apps/stopwatch/imgs/icon.png"};
+        var terminal     = {name: "Terminal",      desc: "The eXastum system terminal emulator", developer: "Brian Millar", url: "sys/apps/terminal/index.html",     win_width: 450, win_height: 350, win_resize: true,  win_min: true,  win_max: true,  use_sys_skin: true, icon_url: "sys/apps/terminal/imgs/icon.png"};
+        var text_editor  = {name: "Text Editor",   desc: "A simple Text Editor",                 developer: "Brian Millar", url: "sys/apps/text_editor/index.html",  win_width: 450, win_height: 350, win_resize: true,  win_min: true,  win_max: true,  use_sys_skin: true, icon_url: "sys/apps/text_editor/imgs/icon.png"};
+        var video_player = {name: "Video Player",  desc: "Play Videos",                          developer: "Brian Millar", url: "sys/apps/video_player/index.html", win_width: 450, win_height: 400, win_resize: true,  win_min: true,  win_max: true,  use_sys_skin: true, icon_url: "sys/apps/video_player/imgs/icon.png"};
 
         var eX_apps = {};
 
