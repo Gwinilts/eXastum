@@ -1,47 +1,3 @@
-function eX_startScrSav() {
-    clearTimeout(eX_scrsav_tmr);
-    $("screenSaver").style.display = "block";
-    eX_scrSavMove();
-}
-
-function eX_scrSavMove() {
-    var x = Math.floor(Math.random() * (window.innerWidth  - 300)) + "px";
-    var y = Math.floor(Math.random() * (window.innerHeight - 100)) + "px";
-    $("scrSavLogo").style.top  = y;
-    $("scrSavLogo").style.left = x;
-    eX_scrsav_move_tmr = setTimeout(eX_scrSavMove, 3000);
-}
-
-function eX_clearScrSav() {
-    $("screenSaver").style.display = "none";
-    clearTimeout(eX_scrsav_move_tmr);
-    eX_scrsav_tmr = setTimeout(eX_startScrSav, eX_scrSavTime);
-}
-
-function eX_mainMenu() {
-    if ($("mainMenu").style.display == "block") {
-        $("mainMenu").style.display = "none";
-        $("menuButton").src = "sys/ui/skins/default/imgs/menuIcon.png";
-    }
-    else {
-        $("mainMenu").style.display = "block";
-        $("menuButton").src = "sys/ui/skins/default/imgs/menuPress.png";
-        var list = "";
-        var apps = JSON.parse(mg_lStore("eX_apps"));
-        var app;
-        for (app in apps)
-            list += "<li onmouseover=\"eX_menuShowAppDesc('" + apps[app].desc + "')\" onmouseout=\"eX_menuShowAppDesc('')\" onclick=\"eX_launchApp('" + app + "')\">" + apps[app].name + "</li>";
-        $("appsList").innerHTML = list;
-    }
-}
-
-function eX_menuShowAppDesc(desc) {
-    $("appMenuDesc").innerText = desc;
-}
-
-function eX_showDock() {
-    $("dock").style.bottom = "30px";
-}
 
 function eX_runSetup() {
     $("overlay").style.display = "block";
@@ -109,32 +65,4 @@ function eX_setupNext() {
             location.reload();
         });
     }
-}
-
-function eX_systemReset() {
-    mg_lStore("firstUse", "del");
-}
-
-function eX_launchApp(appName) {
-    var apps = JSON.parse(mg_lStore("eX_apps"));
-    eX_spawnWindow(apps[appName].win_width, apps[appName].win_height, apps[appName].name, apps[appName].url, apps[appName].win_resize, apps[appName].win_min, apps[appName].win_max);
-}
-
-function eX_loadManifest(appName) {
-}
-
-function eX_clockLoop() {
-    $("clock").innerText = " | " + mg_fDate() + " | " + mg_fTime();
-    setTimeout(eX_clockLoop, 500);
-}
-
-function eX_installApp(manifest) {
-    var obj = JSON.parse(manifest);
-    var apps = mg_lStore("eX_apps");
-    var app;
-    app.name = obj.name;
-    app.desc = obj.desc;
-    app.url  = obj.url;
-    apps[apps.length] = app;
-    mg_lStore("eX_apps", apps);
 }
