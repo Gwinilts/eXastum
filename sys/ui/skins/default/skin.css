@@ -42,6 +42,10 @@ button {
     background-size:  100% 100%;
 }
 
+button:active {
+    background-image: URL("imgs/bg_pressed.png");
+}
+
 textarea {
     font:             liberation-sans;
     font-size:        12px;

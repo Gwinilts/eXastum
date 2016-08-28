@@ -8,3 +8,11 @@ function eX_init() {
     document.addEventListener("mousedown", function () {eX_clearScrSav();});
     document.addEventListener("keydown",   function () {eX_clearScrSav();});
 }
+
+function eX_reload() {
+    location.reload();
+}
+
+function eX_shutdown() {
+    window.close();
+}

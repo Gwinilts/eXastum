@@ -1,3 +1,7 @@
+::-moz-focus-inner {
+    border: none;
+}
+
 button {
     appearance:         none;
     -moz-appearance:    none;
