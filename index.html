@@ -64,12 +64,10 @@
                 <p>Thank you for downloading eXastum! The eXastum desktop has been rewritten from the ground up to provide a more stable, faster and more feature rich platform for running desktop class web applications.
                 <br/><br/>
                 Since it looks as if this is your first time running eXastum on this machine there are just a few steps to go through in order to set things up.
-                <br/><br/>
-                Please check the box below and click 'Next' to continue with setup.</p>
-                <input type="checkbox" onchange="if (this.checked) $('setupNextButton').disabled = false; else $('setupNextButton').disabled = true"/>
+                <br/>
             </div>
             <progress disabled id="setupProgress" min="0" max="100" value="0"></progress>
-            <button disabled id="setupNextButton" onclick="eX_setupNext()">Next</button>
+            <button id="setupNextButton" onclick="eX_setupNext()">Next</button>
         </div>
     </div>
     <div id="overlay"></div>
