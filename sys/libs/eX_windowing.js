@@ -25,6 +25,7 @@ function eX_spawnWindow(x, y, title, content, icon, resize, min, max, use_sys_sk
         $(appContent).addEventListener("load", function () {
                 var appDoc  = $(this.id).contentWindow.document;
                 var eX_exit = "function eX_exit() {window.parent.$(tabID).remove(); window.parent.$(windowID).remove();}";
+                var eX_exec = "function eX_exec(x) {window.parent.eval(x)}";
                 var mg_elm  = appDoc.createElement("div");
                 var style1  = appDoc.createElement("link");
                 var style2  = appDoc.createElement("link");
@@ -34,7 +35,7 @@ function eX_spawnWindow(x, y, title, content, icon, resize, min, max, use_sys_sk
                 script1.innerText = "var windowID = '"   + newWindow  +
                                     "'; var frameID = '" + appContent +
                                     "'; var tabID = '"   + windowTab  +
-                                    "'; "            + eX_exit;
+                                    "'; " + eX_exit + " " + eX_exec;
                 script2.setAttribute("src", "../../libs/macgril.js");
                 script2.setAttribute("id", "mg_lib");
                 script3.innerText = "init()";
@@ -123,10 +124,10 @@ function eX_saveWindowState(winID) {
 }
 
 function eX_dragWindow(appWindow, ev) {
-    positionLeft = parseInt($(appWindow).style.left);
-    positionTop  = parseInt($(appWindow).style.top);
-    xcoor        = ev.clientX;
-    ycoor        = ev.clientY;
+    var positionLeft = parseInt($(appWindow).style.left);
+    var positionTop  = parseInt($(appWindow).style.top);
+    var xcoor        = ev.clientX;
+    var ycoor        = ev.clientY;
     var overlay  = mg_generate("div", appWindow);
     $(overlay).setAttribute("class", "windowOverlay");
 
@@ -175,8 +176,8 @@ function eX_dragWindow(appWindow, ev) {
 function eX_resizeWindow(win, ev) {
     var startWidth  = $(win).scrollWidth;
     var startHeight = $(win).scrollHeight;
-    xcoor = ev.clientX;
-    ycoor = ev.clientY;
+    var xcoor = ev.clientX;
+    var ycoor = ev.clientY;
 
     var overlay  = mg_generate("div", win);
     $(overlay).setAttribute("class", "windowOverlay");
