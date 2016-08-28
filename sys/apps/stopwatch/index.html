@@ -7,12 +7,12 @@
             var timer;
 
             function init() {
-                time = 0.00;
+                time = 0;
             }
 
             function startTimer() {
-                $("timerDisplay").innerText = (time += 0.01).toFixed(2) + "s";
-                timer = setTimeout(startTimer, 10);
+                $("timerDisplay").innerText = ((time++) / 10.0).toFixed(1) + "s";
+                timer = setTimeout(startTimer, 100);
             }
 
             function stopTimer() {
@@ -21,12 +21,12 @@
 
             function resetTimer() {
                 clearTimeout(timer);
-                $("timerDisplay").innerText = (time = 0.00).toFixed(2) + "s";
+                $("timerDisplay").innerText = (time = 0.0).toFixed(1) + "s";
             }
         </script>
     </head>
     <body>
-        <h1 id="timerDisplay">0.00s</h1>
+        <h1 id="timerDisplay">0.0s</h1>
         <button onclick="startTimer()">Start</button>
         <button onclick="stopTimer()">Stop</button>
         <button onclick="resetTimer()">Reset</button>
