@@ -1,14 +1,6 @@
-@font-face {
-    font-family: eXastumDefault;
-    src: local(eXastumDefault), URL("fonts/LiberationSans-Regular.ttf") format("truetype");
-}
-
 body {
-    font-family:      eXastumDefault, sans-serif;
-    font-size:        12px;
     margin:           0px;
     overflow:         hidden;
-    color:            #e3e3e3 !important;
     background-color: #000000;
 
     user-select:         none;
@@ -20,6 +12,30 @@ body {
     -ms-font-smoothing:     antialiased;
     -moz-font-smoothing:    antialiased;
     -webkit-font-smoothing: antialiased;
+}
+
+header {
+    position:         fixed;
+    top:              0px;
+    left:             0px;
+    width:            100%;
+    height:           22px;
+    background-image: URL("skins/default/imgs/panel_bg.png");
+    background-size:  100% 100%;
+    box-shadow:       0px 0px 4px #000;
+    z-index:          3;
+}
+
+footer {
+    position:         fixed;
+    bottom:           0px;
+    left:             0px;
+    width:            100%;
+    height:           22px;
+    background-image: URL("skins/default/imgs/panel_bg.png");
+    background-size:  100% 100%;
+    box-shadow:       0px 0px 4px #000;
+    z-index:          3;
 }
 
 ul {
@@ -184,16 +200,8 @@ input.text {
     border-style:     inset;
 }
 
-button.panelButton {
-    margin-left: 10px;
-}
-
 iframe {
     border: none;
-}
-
-p {
-    text-shadow: 1px 1px 3px #000;
 }
 
 div.window {
@@ -347,36 +355,6 @@ img.barIcon:hover {
     opacity: 1.0;
 }
 
-img.powerButtons {
-    margin-left: 8px;
-    width:       26px;
-    height:      26px;
-    display:     inline;
-    cursor:      pointer;
-}
-
-p.menuTextLink {
-    margin-left: 10px;
-    cursor:      pointer;
-    font-size:   14px;
-    text-shadow: 1px 1px 3px #000000;
-}
-
-p.menuTextLink:hover {
-    text-decoration: underline;
-}
-
-h1.menuTitle {
-    margin-left: 20px;
-    font-weight: lighter;
-    margin-top:  10px;
-
-    animation:         titleFade 1.0s;
-    -webkit-animation: titleFade 1.0s;
-    -moz-animation:    titleFade 1.0s;
-    -ms-animation:     titleFade 1.0s;
-}
-
 #scrSavLogo {
     position: fixed;
     top:      0px;
@@ -398,201 +376,11 @@ h1.menuTitle {
     -moz-animation: fade 0.6s;
 }
 
-#bootsplash {
-    position: fixed;
-    top:      0px;
-    left:     0px;
-    z-index:  20;
-    height:   100%;
-    width:    100%;
-}
-
-#login {
-    display: none;
-}
-
-#loginForm {
-    position:      fixed;
-    top:           150px;
-    left:          calc(50% - 171px);
-    padding:       20px;
-    border-width:  1px;
-    border-radius: 20px;
-    width:         300px;
-    z-index:       2;
-    box-shadow:    0px 0px 30px #000;
-    border-left-style:  solid;
-    border-right-style: solid;
-    background-image:   URL("ui/button.png");
-    background-size:    100% 100%;
-}
-
-#userField {
-    margin-left:    50px;
-    width:          176px;
-    padding-left:   10px;
-    padding-right:  10px;
-    padding-top:    4px;
-    padding-bottom: 3px;
-}
-
-#passField {
-    margin-left:    50px;
-    width:          176px;
-    padding-left:   10px;
-    padding-right:  10px;
-    padding-top:    4px;
-    padding-bottom: 3px;
-}
-
-#loginBG {
-    position:         fixed;
-    top:              0px;
-    left:             0px;
-    z-index:          1;
-    width:            100%;
-    height:           100%;
-    background-color: transparent;
-    background-size:  100% 100%;
-    background-image: URL("ui/login.png");
-}
-
-#abouteXastum {
-    position: absolute;
-    z-index:  20;
-    top:      150px;
-    left:     500px;
-    width:    400px;
-    height:   200px;
-    display:  none;
-    padding:  30px;
-    border-style: inset;
-    border-width: 1px;
-    overflow-X:   hidden;
-    overflow-Y:   scroll;
-    border-radius:    20px;
-    background-image: URL("ui/sider.png");
-    background-size:  100% 100%;
-    box-shadow:       0px 0px 20px #000000;
-}
-
 #infoBar {
     margin-top:  1px;
     width:       120px;
     height:      12px;
     margin-left: 4px;
-}
-
-#timePanel {
-    position:                   fixed;
-    width:                      315px;
-    top:                        21px;
-    right:                      0px;
-    background-image:           URL("ui/button.png");
-    padding:                    20px;
-    background-size:            100% 100%;
-    z-index:                    11;
-    display:                    none;
-    background-color:           rgba(0,0,0,0.7);
-    box-shadow:                 0px 8px 20px #000000;
-    border-width:               1px;
-    border-style:               inset;
-    border-bottom-left-radius:  20px;
-    border-bottom-right-radius: 15px;
-    border-top-left-radius:     15px;
-    border-top-right-radius:    10px;
-
-    animation:         0.4s sysPanel;
-    -webkit-animation: 0.4s sysPanel;
-    -moz-animation:    0.4s sysPanel;
-    -ms-animation:     0.4s sysPanel;
-}
-
-#audioPanel {
-    position:                   fixed;
-    top:                        21px;
-    right:                      0px;
-    background-image:           URL("ui/button.png");
-    padding:                    20px;
-    background-size:            100% 100%;
-    z-index:                    11;
-    display:                    none;
-    background-color:           rgba(0,0,0,0.7);
-    box-shadow:                 0px 8px 20px #000000;
-    border-width:               1px;
-    border-style:               inset;
-    border-bottom-left-radius:  20px;
-    border-bottom-right-radius: 15px;
-    border-top-left-radius:     15px;
-    border-top-right-radius:    10px;
-
-    animation:         0.4s sysPanel;
-    -webkit-animation: 0.4s sysPanel;
-    -moz-animation:    0.4s sysPanel;
-    -ms-animation:     0.4s sysPanel;
-}
-
-#analogClock {
-    width:            125px;
-    height:           125px;
-    background-image: URL("ui/clockBack.png");
-    background-size:  100% 100%;
-    position:         absolute;
-    right:            200px;
-}
-
-#hourHand {
-    position: absolute;
-    margin:   0px;
-}
-
-#minsHand {
-    position: absolute;
-    margin:   0px;
-}
-
-#secsHand {
-    position: absolute;
-    margin:   0px;
-}
-
-#miniCal {
-    font-size:   14px;
-    color:       #838383;
-    margin-left: 155px;
-    text-shadow: 1px 1px 4px #000000;
-}
-
-#miniCal td {
-    text-align: center;
-    padding:    3px;
-}
-
-#userName {
-    position:   absolute;
-    top:        0px;
-    right:      8px;
-    margin-top: 2px;
-    font-size:  16px;
-    color:      #838383;
-}
-
-#miniLauncher {
-    position: fixed;
-    top:      1px;
-    left:     50px;
-}
-
-#miniLauncher img {
-    opacity: 0.8;
-    width:   19px;
-    height:  19px;
-    margin-left: 3px;
-}
-
-#miniLauncher img:hover {
-    opacity: 1.0;
-    cursor:  pointer;
 }
 
 #sysTasks {
@@ -628,16 +416,6 @@ h1.menuTitle {
     font-family:  monospace !important;
 }
 
-#soundPanel {
-    display:          none;
-    position:         fixed;
-    top:              22px;
-    right:            0px;
-    background-color: rgba(0, 0, 0, 0.7);
-    box-shadow:       0px 0px 4px #000;
-    z-index:          3;
-}
-
 #buildNum {
     font-size:   14px;
     position:    fixed;
@@ -647,130 +425,10 @@ h1.menuTitle {
     text-align:  center;
 }
 
-#sysSettings {
-    width:   500px;
-    height:  400px;
-    resize:  none;
-    display: none;
-}
-
-#settingsSidebar {
-    background-size:    100% 100%;
-    background-image:   URL("ui/sider.png");
-    width:              80px;
-    margin-top:         30px;
-    padding:            20px;
-    height:             100%;
-    box-shadow:         0px 10px 20px #000;
-    border-right-style: solid;
-    border-width:       1px;
-}
-
-#dockFirstIcon {
-    margin-left: 52px;
-}
-
-#dock {
-    display:          block;
-    position:         fixed;
-    bottom:           20px;
-    left:             calc(50% - 350px);
-    width:            700px;
-    height:           50px;
-    overflow:         visible;
-    background-color: transparent;
-    background-image: URL("ui/dock.png");
-    background-size:  100% 100%;
-
-    transform:         translateY(140px);
-    -ms-transform:     translateY(140px);
-    -moz-transform:    translateY(140px);
-    -webkit-transform: translateY(140px);
-
-    transition:         0.4s transform;
-    -ms-transition:     0.4s transform;
-    -moz-transition:    0.4s transform;
-    -webkit-transition: 0.4s transform;
-}
-
-#menuRight {
-    position:                   absolute;
-    right:                      0px;
-    top:                        0px;
-    width:                      150px;
-    height:                     100%;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius:    15px;
-    background-image:           URL("ui/sider.png");
-    background-size:            100% 100%;
-    border-width:               1px;
-    border-left-style:          solid;
-    box-shadow:                 0px 0px 8px #000000;
-    background-color:           transparent;
-}
-
 #menuButton {
     position: fixed;
     z-index:  20;
     height:   23px;
-}
-
-#menuLinks {
-    position: absolute;
-    bottom:   40px;
-}
-
-#menuIconPreview {
-    margin-left: 20px;
-    margin-top:  25px;
-}
-
-#menuAppsList {
-    width:      289px;
-    position:   absolute;
-    top:        35px;
-    height:     234px;
-    box-shadow: inset 0px 0px 20px #000000;
-}
-
-#menuBottom {
-    position:                  absolute;
-    bottom:                    0px;
-    height:                    40px;
-    border-top-style:          solid;
-    border-width:              1px;
-    width:                     289px;
-    background-image:          URL("ui/button.png");
-    background-size:           100% 100%;
-    border-bottom-left-radius: 15px;
-}
-
-#menuTop {
-    position:               absolute;
-    top:                    0px;
-    height:                 44px;
-    border-bottom-style:    solid;
-    border-width:           1px;
-    width:                  289px;
-    background-image:       URL("ui/button.png");
-    background-size:        100% 100%;
-    border-top-left-radius: 10px;
-}
-
-#menuSearch {
-    margin-left: 10px;
-    margin-top:  10px;
-    width:       130px;
-}
-
-#menuPowerButtons {
-    position:    absolute;
-    bottom:      8px;
-    margin-left: 60px;
-}
-
-#quickLaunch {
-    margin-left: 52px;
 }
 
 #desktop {
@@ -782,28 +440,6 @@ h1.menuTitle {
     margin:           0px;
     overflow:         hidden;
     background-color: transparent;
-}
-
-#leftHotspot {
-    position:         fixed;
-    top:              0px;
-    left:             0px;
-    width:            8px;
-    height:           100%;
-    background-color: transparent;
-}
-
-#rightHotspot {
-    position:         fixed;
-    top:              0px;
-    right:            0px;
-    width:            8px;
-    height:           100%;
-    background-color: transparent;
-}
-
-#loggedIn {
-    display: none;
 }
 
 #setup {
@@ -868,20 +504,6 @@ h1.menuTitle {
     overflow: hidden;
 }
 
-#widgetLayer {
-    z-index:          0;
-    position:         fixed;
-    top:              0px;
-    bottom:           0px;
-    left:             0px;
-    right:            0px;
-    margin:           0px;
-    width:            100%;
-    height:           100%;
-    overflow:         hidden;
-    background-color: transparent;
-}
-
 #windowLayer {
     z-index:          1;
     position:         fixed;
@@ -896,13 +518,6 @@ h1.menuTitle {
     background-color: transparent;
 }
 
-#console {
-    width:            100%;
-    height:           100%;
-    resize:           none;
-    background-color: #000000;
-}
-
 span.rhandle {
     position: absolute;
     bottom:   0px;
@@ -914,65 +529,22 @@ span.rhandle {
     cursor: nwse-resize;
 }
 
-
-@keyframes         window {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; transform:         scale(0.0) translateY(150px) rotateY(45deg) rotateX(45deg);} 100% {opacity: 1.0; transform:         scale(1.0) translateY(0px) rotateY(0deg) rotateX(0deg);}}
-@-moz-keyframes    window {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -moz-transform:    scale(0.0) translateY(150px) rotateY(45deg) rotateX(45deg);} 100% {opacity: 1.0; -moz-transform:    scale(1.0) translateY(0px) rotateY(0deg) rotateX(0deg);}}
-@-webkit-keyframes window {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -webkit-transform: scale(0.0) translateY(150px) rotateY(45deg) rotateX(45deg);} 100% {opacity: 1.0; -webkit-transform: scale(1.0) translateY(0px) rotateY(0deg) rotateX(0deg);}}
-@-ms-keyframes     window {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -ms-transform:     scale(0.0) translateY(150px) rotateY(45deg) rotateX(45deg);} 100% {opacity: 1.0; -ms-transform:     scale(1.0) translateY(0px) rotateY(0deg) rotateX(0deg);}}
-
-@keyframes         mainMenu {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; transform:         translateY(-320px) translateX(-440px) rotateY(-45deg) rotateX(45deg);} 100% {opacity: 1.0; transform:         translateY(0px) rotateY(0deg) rotateX(0deg);}}
-@-moz-keyframes    mainMenu {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -moz-transform:    translateY(-320px) translateX(-440px) rotateY(-45deg) rotateX(45deg);} 100% {opacity: 1.0; -moz-transform:    translateY(0px) rotateY(0deg) rotateX(0deg);}}
-@-webkit-keyframes mainMenu {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -webkit-transform: translateY(-320px) translateX(-440px) rotateY(-45deg) rotateX(45deg);} 100% {opacity: 1.0; -webkit-transform: translateY(0px) rotateY(0deg) rotateX(0deg);}}
-@-ms-keyframes     mainMenu {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -ms-transform:     translateY(-320px) translateX(-440px) rotateY(-45deg) rotateX(45deg);} 100% {opacity: 1.0; -ms-transform:     translateY(0px) rotateY(0deg) rotateX(0deg);}}
-
-@keyframes         sysPanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; transform:         translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; transform:         translateY(0px) rotateY(0deg) rotateX(0deg);}}
-@-moz-keyframes    sysPanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -moz-transform:    translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; -moz-transform:    translateY(0px) rotateY(0deg) rotateX(0deg);}}
-@-webkit-keyframes sysPanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -webkit-transform: translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; -webkit-transform: translateY(0px) rotateY(0deg) rotateX(0deg);}}
-@-ms-keyframes     sysPanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -ms-transform:     translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; -ms-transform:     translateY(0px) rotateY(0deg) rotateX(0deg);}}
-
-@keyframes         fadeInOut {0% {opacity: 0.6;} 50% {opacity: 1.0;} 100% {opacity: 0.6;}}
-@-moz-keyframes    fadeInOut {0% {opacity: 0.6;} 50% {opacity: 1.0;} 100% {opacity: 0.6;}}
-@-webkit-keyframes fadeInOut {0% {opacity: 0.6;} 50% {opacity: 1.0;} 100% {opacity: 0.6;}}
-@-ms-keyframes     fadeInOut {0% {opacity: 0.6;} 50% {opacity: 1.0;} 100% {opacity: 0.6;}}
-
-@keyframes         sysDialog {0% {box-shadow: 0px 0px 25px #000000;} 50% {box-shadow: 0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow: 0px 0px 25px #000000;}}
-@-moz-keyframes    sysDialog {0% {box-shadow: 0px 0px 25px #000000;} 50% {box-shadow: 0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow: 0px 0px 25px #000000;}}
-@-webkit-keyframes sysDialog {0% {box-shadow: 0px 0px 25px #000000;} 50% {box-shadow: 0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow: 0px 0px 25px #000000;}}
-@-ms-keyframes     sysDialog {0% {box-shadow: 0px 0px 25px #000000;} 50% {box-shadow: 0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow: 0px 0px 25px #000000;}}
-
-@keyframes         titleFade {0% {opacity: 0.0; margin-left: -10px;} 100% {opacity: 1.0;}}
-@-moz-keyframes    titleFade {0% {opacity: 0.0; margin-left: -10px;} 100% {opacity: 1.0;}}
-@-webkit-keyframes titleFade {0% {opacity: 0.0; margin-left: -10px;} 100% {opacity: 1.0;}}
-@-ms-keyframes     titleFade {0% {opacity: 0.0; margin-left: -10px;} 100% {opacity: 1.0;}}
-
-header {
-    position:         fixed;
-    top:              0px;
-    left:             0px;
-    width:            100%;
-    height:           22px;
-    background-image: URL("skins/default/imgs/panel_bg.png");
-    background-size:  100% 100%;
-    box-shadow:       0px 0px 4px #000;
-    z-index:          3;
+#miniLauncher {
+    position: fixed;
+    top:      1px;
+    left:     50px;
 }
 
-footer {
-    position:         fixed;
-    bottom:           0px;
-    left:             0px;
-    width:            100%;
-    height:           22px;
-    background-image: URL("skins/default/imgs/panel_bg.png");
-    background-size:  100% 100%;
-    box-shadow:       0px 0px 4px #000;
-    z-index:          3;
+#miniLauncher img {
+    opacity: 0.8;
+    width:   19px;
+    height:  19px;
+    margin-left: 3px;
 }
 
-button {
-    border-radius:    8px;
-    background-image: URL("skins/default/imgs/panel_bg.png");
-    background-size:  100% 100%;
+#miniLauncher img:hover {
+    opacity: 1.0;
+    cursor:  pointer;
 }
 
 #desktop {
@@ -985,26 +557,6 @@ button {
     box-shadow:       inset 0px 0px 4px #000;
     background-image: URL("skins/default/imgs/wallpaper.png");
     background-size:  100% 100%;
-}
-
-#icons {
-    position:   absolute;
-    top:        21px;
-    left:       0px;
-    bottom:     21px;
-    right:      180px;
-    box-shadow: inset 0px 0px 4px #000;
-    z-index:    2;
-}
-
-aside {
-    position:         absolute;
-    right:            0px;
-    width:            160px;
-    top:              21px;
-    bottom:           21px;
-    background-color: rgba(0, 0, 0, 0.1);
-    z-index:          1;
 }
 
 #menuButton {
@@ -1052,17 +604,6 @@ aside {
     background-size:  100% 100%;
 }
 
-#dock {
-    width:            600px;
-    height:           100px;
-    position:         fixed;
-    bottom:           -120px;
-    border-radius:    20px;
-    box-shadow:       0px 0px 4px #000;
-    left:             calc(50% - 300px);
-    background-color: #000;
-}
-
 #setup {
     display:          none;
     width:            480px;
@@ -1092,9 +633,4 @@ aside {
     height:   100%;
     background-color: rgba(0, 0, 0, 0.7);
     z-index:  100;
-}
-
-@-moz-keyframes fade {
-    0%   {opacity: 0.0;}
-    100% {opacity: 1.0;}
 }

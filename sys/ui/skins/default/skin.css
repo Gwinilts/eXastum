@@ -8,8 +8,14 @@
     src: local(lighterRaleway), URL("fonts/Raleway-Light.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: eXastumDefault;
+    src: local(eXastumDefault), URL("fonts/LiberationSans-Regular.ttf") format("truetype");
+}
+
 body {
-    color: #e3e3e3;
+    color:       #e3e3e3 !important;
+    font-size:   12px;
     font-family: liberation-sans, sans-serif !important;
 }
 
@@ -26,14 +32,14 @@ a:hover {
 button {
     outline:          none;
     border:           none;
-    border-radius:    3px;
+    border-radius:    4px;
     font-size:        12px;
-    padding-top:      4px;
-    padding-bottom:   4px;
-    padding-left:     6px;
-    padding-right:    6px;
+    padding:          4px;
+    text-shadow:      1px 1px 1px #000;
     color:            #e3e3e3;
     background-color: rgba(49, 146, 153, 0.1);
+    background-image: URL("imgs/panel_bg.png");
+    background-size:  100% 100%;
 }
 
 textarea {
@@ -42,6 +48,7 @@ textarea {
     padding:          10px;
     border:           none;
     outline:          none;
+    resize:           none;
     color:            #e3e3e3;
     background-color: rgba(49, 146, 153, 0.1);
 }

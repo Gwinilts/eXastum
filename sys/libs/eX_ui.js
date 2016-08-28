@@ -21,7 +21,3 @@ function eX_menuShowAppDetails(appName, dev, desc, icon) {
     $("appMenuDesc").innerText = desc;
     $("appMenuIcon").src = icon;
 }
-
-function eX_showDock() {
-    $("dock").style.bottom = "30px";
-}

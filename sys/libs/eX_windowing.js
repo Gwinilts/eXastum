@@ -45,7 +45,7 @@ function eX_spawnWindow(x, y, title, content, icon, resize, min, max, use_sys_sk
                     style1.setAttribute("type", "text/css");
                     style2.setAttribute("type", "text/css");
                     style1.setAttribute("href", "../../ui/reset.css");
-                    style2.setAttribute("href", "../../ui/layout.css");
+                    style2.setAttribute("href", "../../ui/skins/default/skin.css");
                     appDoc.head.appendChild(style1);
                     appDoc.head.appendChild(style2);
                 }
@@ -87,7 +87,7 @@ function eX_minMaxWindow(winID, tabID) {
     }
     else {
         $(winID).style.display = "block";
-        $(tabID).style.backgroundImage = "URL('sys/skins/" + lStore("skin") + "/ui/backing_down.png')";
+        $(tabID).style.backgroundImage = "URL('sys/skins/" + mg_lStore("skin") + "/ui/backing_down.png')";
     }
 }
 
