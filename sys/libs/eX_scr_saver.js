@@ -15,5 +15,6 @@ function eX_scrSavMove() {
 function eX_clearScrSav() {
     $("screenSaver").style.display = "none";
     clearTimeout(eX_scrsav_move_tmr);
+    clearTimeout(eX_scrsav_tmr);
     eX_scrsav_tmr = setTimeout(eX_startScrSav, eX_scrSavTime);
 }
