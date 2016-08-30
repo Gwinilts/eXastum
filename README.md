@@ -12,14 +12,14 @@ eXastum bundles a copy of the Three.js library, it is licensed under the MIT
 license, you can find the minified library and a copy of the MIT license in
 sys/libs/third_party/three
 
-RUNNING INSTRUCTIONS
+Running Instructions
 ====================
 
-==FIREFOX===========
+==FIREFOX===========  
  Firefox should just run the index.html file with no problems, everything should
  just work.
 
-==CHROME============
+==CHROME============  
  eXastum will only work correctly in Chrome when using a localhost server. You
  MUST use a server or Chrome will block many features based on its security
  model.
