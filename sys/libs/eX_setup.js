@@ -19,12 +19,21 @@ function eX_setupNext() {
         dbOpenRequest.onsuccess = function () {
             $("currentSetupStage").innerHTML += "<h3 style='color:green;'>Successfully Created Database</h3>";
         }
-    } else if ($("setupProgress").value == ((100 / steps) * 2)) {
+    } else if ($("setupProgress").value == ((100 /steps) * 2)) {
+        $("currentSetupStage").innerHTML = "<h1>User Account</h1><p>You can now personalise your user account. This account is local to this machine, your information will not be sent anywhere. Even so its recommended you not enter anything too personal.</p><br/><input id='eX_username' type='text' placholder='username'/>";
+        $("setupNextButton").setAttribute("onclick", "var eX_user = {}; eX_user.name = $('eX_username').value; mg_lStore('eX_user', JSON.stringify(eX_user)); mg_lStore('eX_skin', 'default'); eX_setupNext();")
+    } else if ($("setupProgress").value == ((100 / steps) * 3)) {
+        $("currentSetupStage").innerHTML = "<h1>Something Will Be Here 1</h1>";
+        $("setupNextButton").setAttribute("onclick", "eX_setupNext();");
+    } else if ($("setupProgress").value == ((100 / steps) * 4)) {
+        $("currentSetupStage").innerHTML = "<h1>Something Will Be Here 2</h1>";
+        $("setupNextButton").setAttribute("onclick", "eX_setupNext();");
+    } else if ($("setupProgress").value == ((100 / steps) * 5)) {
         var browser      = {name: "Browser",       desc: "Browser Inception",                    developer: "Brian Millar", url: "sys/apps/browser/index.html",      win_width: 800, win_height: 600, win_resize: true,  win_min: true,  win_max: true,  use_sys_skin: true, icon_url: "sys/apps/browser/imgs/icon.png"};
         var calculator   = {name: "Calculator",    desc: "Perform basic calculations",           developer: "Brian Millar", url: "sys/apps/calculator/index.html",   win_width: 300, win_height: 350, win_resize: false, win_min: true,  win_max: false, use_sys_skin: true, icon_url: "sys/apps/calculator/imgs/icon.png"};
         var image_viewer = {name: "Image Viewer",  desc: "View Images",                          developer: "Brian Millar", url: "sys/apps/image_viewer/index.html", win_width: 450, win_height: 400, win_resize: true,  win_min: true,  win_max: true,  use_sys_skin: true, icon_url: "sys/apps/image_viewer/imgs/icon.png"};
         var music        = {name: "eXastum Music", desc: "The eXastum Music Application",        developer: "Brian Millar", url: "sys/apps/music/index.html",        win_width: 450, win_height: 350, win_resize: true,  win_min: true,  win_max: true,  use_sys_skin: true, icon_url: "sys/apps/music/imgs/icon.png"};
-        var settings     = {name: "Settings",      desc: "eXastum System Settings",              developer: "Brian Millar", url: "sys/apps/settings/index.html",     win_width: 450, win_height: 400, win_resize: false, win_min: true,  win_max: false, use_sys_skin: true, icon_url: "sys/apps/settings/imgs/icon.png"};
+        var settings     = {name: "Settings",      desc: "eXastum System Settings",              developer: "Brian Millar", url: "sys/apps/settings/index.html",     win_width: 650, win_height: 450, win_resize: false, win_min: true,  win_max: false, use_sys_skin: true, icon_url: "sys/apps/settings/imgs/icon.png"};
         var stopwatch    = {name: "Stopwatch",     desc: "Time stuff",                           developer: "Brian Millar", url: "sys/apps/stopwatch/index.html",    win_width: 200, win_height: 120, win_resize: false, win_min: true,  win_max: false, use_sys_skin: true, icon_url: "sys/apps/stopwatch/imgs/icon.png"};
         var terminal     = {name: "Terminal",      desc: "The eXastum system terminal emulator", developer: "Brian Millar", url: "sys/apps/terminal/index.html",     win_width: 450, win_height: 350, win_resize: true,  win_min: true,  win_max: true,  use_sys_skin: true, icon_url: "sys/apps/terminal/imgs/icon.png"};
         var text_editor  = {name: "Text Editor",   desc: "A simple Text Editor",                 developer: "Brian Millar", url: "sys/apps/text_editor/index.html",  win_width: 450, win_height: 350, win_resize: true,  win_min: true,  win_max: true,  use_sys_skin: true, icon_url: "sys/apps/text_editor/imgs/icon.png"};
@@ -62,7 +71,7 @@ function eX_setupNext() {
 
             mg_lStore("eX_apps", JSON.stringify(eX_apps));
 
-            mg_lStore("firstUse", "false");
+            mg_lStore("eX_1stUse", "false");
             location.reload();
         });
     }

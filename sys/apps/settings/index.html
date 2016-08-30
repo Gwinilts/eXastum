@@ -2,13 +2,54 @@
 <html>
     <head>
         <title>Settings</title>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
         <script>
             function init() {
+                popTable();
+            }
+
+            function popTable() {
+                addRow("eX_user",   "User Information",       mg_lStore("eX_user"));
+                addRow("eX_skin",   "UI Look & Feel",         mg_lStore("eX_skin"));
+                addRow("eX_apps",   "Installed Applications", mg_lStore("eX_apps"));
+                addRow("eX_1stUse", "Should Setup be Run",    mg_lStore("eX_1stUse"));
+            }
+
+            function addRow(name, desc, content) {
+                var row  = document.createElement("tr");
+                var col1 = document.createElement("td");
+                var col2 = document.createElement("td");
+                var col3 = document.createElement("td");
+                var tb   = document.createElement("input");
+                tb.setAttribute("type", "text");
+                tb.setAttribute("class", "text");
+                tb.value = content;
+                col1.innerText = name;
+                col2.innerText = desc;
+                col3.appendChild(tb);
+                row.appendChild(col1);
+                row.appendChild(col2);
+                row.appendChild(col3);
+                $("settingsTable").appendChild(row);
             }
         </script>
     </head>
     <body>
-        <h1>Settings</h1>
-        <button onclick="eX_exec('eX_systemReset()')">System Reset</button>
+        <aside id="tabList">
+            <h2>User</h2>
+            <h2>Applications</h2>
+            <h2>Interface</h2>
+            <h2>Advanced</h2>
+        </aside>
+        <div id="advancedTab">
+            <table id="settingsTable">
+            </table>
+        </div>
+        <footer>
+            <div id="bottomButtons">
+                <button onclick="eX_exec('eX_systemReset()')">System Reset</button>
+                <button>Apply</button>
+            </div>
+        </footer>
     </body>
 </html>

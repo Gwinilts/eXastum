@@ -1,0 +1,55 @@
+footer {
+    position: absolute;
+    bottom:   0px;
+    left:     0px;
+    width:    100%;
+    height:   30px;
+    background-image: URL("imgs/bg.png");
+    background-size:  100% 100%;
+    background-color: rgba(180, 10,10, 0.7);
+}
+
+#resetButton {
+    position: fixed;
+    top:      20px;
+    right:    10px;
+}
+
+#tabList {
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    padding: 10px;
+    width: calc(20% - 20px);
+    height: calc(100% - 50px);
+    background-image: URL("imgs/sider.png");
+    background-size:  100% 100%;
+    background-color: rgba(180, 10, 10, 0.3);
+}
+
+#bottomButtons {
+    position: absolute;
+    bottom: 4px;
+    right:  10px;
+}
+
+#advancedTab {
+    float: right;
+    width: 80%;
+}
+
+#settingsTable {
+    width:  100%;
+    height: 100%;
+}
+
+tr {
+
+}
+
+td {
+    border-width: 1px;
+    border-color: #e3e3e3;
+    border-style: solid;
+}
