@@ -117,16 +117,6 @@ input.slider {
     -moz-appearance: none;
 }
 
-progress {
-    outline:         none;
-    appearance:      none;
-    -moz-appearance: none;
-}
-
--moz-progress-bar {
-    background-color: pink;
-}
-
 .panel {
     color: #e3e3e3;
     background-color: rgba(0, 0, 0, 0.9);

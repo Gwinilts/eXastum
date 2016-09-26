@@ -3,11 +3,12 @@
 }
 
 button {
-    appearance:         none;
-    -moz-appearance:    none;
     -webkit-appearance: none;
+    -moz-appearance:    none;
     -ms-appearance:     none;
     -o-appearance:      none;
+    -khtml-appearance:  none;
+    appearance:         none;
     outline: none;
     border:  none;
     padding: none;
@@ -15,15 +16,18 @@ button {
 }
 
 input {
-/*
-    appearance:         none;
-    -moz-appearance:    none;
-    -webkit-appearance: none;
-    -ms-appearance:     none;
-    -o-appearance:      none;
-*/
     outline: none;
     border:  none;
     padding: none;
     margin:  none;
+}
+
+progress {
+    outline:         none;
+    appearance:      none;
+    -moz-appearance: none;
+}
+
+-moz-progress-bar {
+    background-color: pink;
 }
